@@ -1,52 +1,52 @@
-man(voeneg).
-man(ratibor).
-man(boguslav).
-man(velerad).
-man(duhovlad).
-man(svyatoslav).
-man(dobrozhir).
-man(bogomil).
-man(zlatomir).
+man(kikela).
+man(antimen).
+man(bidziil).
+man(gad).
+man(melkeduduk).
+man(nosh).
+man(tekamseh).
+man(honon).
+man(yas).
 
-woman(goluba).
-woman(lubomila).
-woman(bratislava).
-woman(veslava).
-woman(zhdana).
-woman(bozhedara).
-woman(broneslava).
-woman(veselina).
-woman(zdislava).
+woman(adsila).
+woman(ayasha).
+woman(muna).
+woman(koko).
+woman(mimiteh).
+woman(pokehontas).
+woman(sokenon).
+woman(uta).
+woman(tiva).
 
-parent(voeneg,ratibor).
-parent(voeneg,bratislava).
-parent(voeneg,velerad).
-parent(voeneg,zhdana).
+parent(nosh,kikela).
+parent(nosh,gad).
+parent(nosh,uta).
+parent(nosh,tiva).
 
-parent(goluba,ratibor).
-parent(goluba,bratislava).
-parent(goluba,velerad).
-parent(goluba,zhdana).
+parent(pokehontas,kikela).
+parent(pokehontas,gad).
+parent(pokehontas,uta).
+parent(pokehontas,tiva).
 
-parent(ratibor,svyatoslav).
-parent(ratibor,dobrozhir).
-parent(lubomila,svyatoslav).
-parent(lubomila,dobrozhir).
+parent(kikela,honon).
+parent(kikela,tekamseh).
+parent(ayasha,honon).
+parent(ayasha,tekamseh).
 
-parent(boguslav,bogomil).
-parent(boguslav,bozhedara).
-parent(bratislava,bogomil).
-parent(bratislava,bozhedara).
+parent(gad,sokenon).
+parent(gad,yas).
+parent(muna,sokenon).
+parent(muna,yas).
 
-parent(velerad,broneslava).
-parent(velerad,veselina).
-parent(veslava,broneslava).
-parent(veslava,veselina).
+parent(uta,koko).
+parent(uta,adsila).
+parent(antimen,koko).
+parent(antimen,adsila).
 
-parent(duhovlad,zdislava).
-parent(duhovlad,zlatomir).
-parent(zhdana,zdislava).
-parent(zhdana,zlatomir).
+parent(tiva,melkeduduk).
+parent(tiva,sokenon).
+parent(bidziil,melkeduduk).
+parent(bidziil,sokenon).
 
 allMan(X):-man(X),write(X),write(", "),fail.
 allWoman(X):-woman(X),write(X),write(", "),fail.
