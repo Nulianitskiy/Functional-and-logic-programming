@@ -60,3 +60,7 @@ readMinList(N):-
     write("Список: "),readList(N,List),nl,
     write("Результат: "),minListUp(List,X),
     write(X),nl,false.
+
+% Задание 9
+member(X,[X,_]):-!.
+member(X,[_|T]):-member(X,T).
