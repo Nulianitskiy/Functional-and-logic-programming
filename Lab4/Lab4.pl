@@ -6,10 +6,6 @@ readList(N,L):-rList(N,0,[],L).
 rList(N,N,L,L):-!.
 rList(N,I,CurL,L):-I1 is I+1, read(X),append(CurL,[X],CurL1),rList(N,I1,CurL1,L).
 
-reverse(L,X):-rev(L,[],X).
-rev([],X,X):-!.
-rev([H|T],CurL,X):-rev(T,[H|CurL],X).
-
 % Задание 2
 sumListDown(List,Sum):-sListD(List,0,Sum).
 sListD([],Sum,Sum):-!.
@@ -64,3 +60,8 @@ readMinList(N):-
 % Задание 9
 member(X,[X,_]):-!.
 member(X,[_|T]):-member(X,T).
+
+% Задание 10
+reverse(L,X):-rev(L,[],X).
+rev([],X,X):-!.
+rev([H|T],CurL,X):-rev(T,[H|CurL],X).
