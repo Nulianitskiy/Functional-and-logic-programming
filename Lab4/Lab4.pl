@@ -42,3 +42,10 @@ readListNumbEl(N):-
     write("Номер: "),read(Numb),nl,
     write("Результат: "),listElNumb(List,X,Numb),
     write(X),nl,false.
+
+% Задание 6
+min(X,Y,X):-X<Y.
+min(_,Y,Y).
+
+minListUp([],9999):-!.
+minListUp([H|List],Min):-minListUp(List,NewMin),min(NewMin,H,Min).
