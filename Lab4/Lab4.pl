@@ -44,8 +44,13 @@ readListNumbEl(N):-
     write(X),nl,false.
 
 % Задание 6
-min(X,Y,X):-X<Y.
-min(_,Y,Y).
+min(X,Y,X):-X<Y,!.
+min(_,Y,Y):-!.
 
 minListUp([],9999):-!.
 minListUp([H|List],Min):-minListUp(List,NewMin),min(NewMin,H,Min).
+
+% Задание 7
+minListDown(List,Min):-minLD(List,9999,Min).
+minLD([],Min,Min):-!.
+minLD([H|L],CurMin,Min):-min(CurMin,H,NewCurMin),minLD(L,NewCurMin,Min).
