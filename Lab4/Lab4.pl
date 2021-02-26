@@ -19,3 +19,11 @@ readSumWriteList(N):-
 % Задание 3
 sumListUp([],0):-!.
 sumListUp([H|List],Sum):-sumListUp(List,SumNew),Sum is SumNew + H.
+
+
+% Задание 4
+member(X,[X|_]):-!.
+member(X,[_|T]):-member(X,T).
+
+listElNumb([H|_],H,0):-!.
+listElNumb([_|List],Elem,Numb):-listElNumb(List,Elem,NewNumb),Numb is NewNumb+1.
