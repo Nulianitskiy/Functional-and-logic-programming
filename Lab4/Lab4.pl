@@ -54,3 +54,9 @@ minListUp([H|List],Min):-minListUp(List,NewMin),min(NewMin,H,Min).
 minListDown(List,Min):-minLD(List,9999,Min).
 minLD([],Min,Min):-!.
 minLD([H|L],CurMin,Min):-min(CurMin,H,NewCurMin),minLD(L,NewCurMin,Min).
+
+% Задание 8
+readMinList(N):-
+    write("Список: "),readList(N,List),nl,
+    write("Результат: "),minListUp(List,X),
+    write(X),nl,false.
