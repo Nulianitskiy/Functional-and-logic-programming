@@ -35,3 +35,10 @@ readListElNumb(N):-
     write("Элемент: "),read(Elem),nl,
     write("Результат: "),listElNumb(List,Elem,X),
     write(X),nl,false.
+
+% Задание 5
+readListNumbEl(N):-
+    write("Список: "),readList(N,List),nl,
+    write("Номер: "),read(Numb),nl,
+    write("Результат: "),listElNumb(List,X,Numb),
+    write(X),nl,false.
