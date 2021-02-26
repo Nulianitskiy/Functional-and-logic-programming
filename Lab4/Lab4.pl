@@ -69,3 +69,7 @@ rev([H|T],CurL,X):-rev(T,[H|CurL],X).
 % Задание 11
 p([],[]):-!.
 p([HS|Sublist],[HL|List]):-p(Sublist,List),HS =:= HL.
+
+% Задание 12
+delByNumb(List,[_|List],0):-!.
+delByNumb([H|List1],[H|List2],Numb):-N is Numb - 1, delByNumb(List1,List2,N).
