@@ -6,6 +6,10 @@ readList(N,L):-rList(N,0,[],L).
 rList(N,N,L,L):-!.
 rList(N,I,CurL,L):-I1 is I+1, read(X),append(CurL,[X],CurL1),rList(N,I1,CurL1,L).
 
+reverse(L,X):-rev(L,[],X).
+rev([],X,X):-!.
+rev([H|T],CurL,X):-rev(T,[H|CurL],X).
+
 % Задание 2
 sumListDown(List,Sum):-sListD(List,0,Sum).
 sListD([],Sum,Sum):-!.
@@ -22,8 +26,12 @@ sumListUp([H|List],Sum):-sumListUp(List,SumNew),Sum is SumNew + H.
 
 
 % Задание 4
-member(X,[X|_]):-!.
-member(X,[_|T]):-member(X,T).
-
 listElNumb([H|_],H,0):-!.
 listElNumb([_|List],Elem,Numb):-listElNumb(List,Elem,NewNumb),Numb is NewNumb+1.
+
+% Задание 4_2
+readListElNumb(N):-
+    write("Список: "),readList(N,List),nl,
+    write("Элемент: "),read(Elem),nl,
+    write("Результат: "),listElNumb(List,Elem,X),
+    write(X),nl,false.
