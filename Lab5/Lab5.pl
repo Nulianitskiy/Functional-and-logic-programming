@@ -62,3 +62,24 @@ in_list(Friends,[chernov,ginger])),
 in_list(Friends,[rizhov,blond])),
 
 write(Friends).
+
+% Exc 3
+
+prGirls:- Girls=[_,_,_],
+    (   in_list(Girls,[ann,white,white]);
+    in_list(Girls,[ann,green,green]);
+    in_list(Girls,[ann,blue,blue])),
+
+    in_list(Girls,[natasha,_,green]),
+    (   in_list(Girls,[natasha,white,_]);
+    in_list(Girls,[natasha,green,_]);
+    in_list(Girls,[natasha,blue,_])),
+
+    (   in_list(Girls,[valya,green,_]);
+    in_list(Girls,[valya,blue,_])),
+    (   in_list(Girls,[valya,_,green]);
+    in_list(Girls,[valya,_,blue])),
+
+    not(in_list(Girls,[valya,white,white])),
+    in_list(Girls,[ann,Color,Color]),
+    write(Girls).
