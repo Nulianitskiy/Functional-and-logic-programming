@@ -1,4 +1,13 @@
 % Exc 1
+sub_posl([],_):-!.
+sub_posl(_,[]):-fail,!.
+sub_posl([H|Sub_list],[H|List]):-sub_posl(Sub_list,List),!.
+sub_posl(Sub_list,[_|List]):-sub_posl(Sub_list,List).
+
+sub_set([],[]).
+sub_set([H|Sub_set],[H|Set]):-sub_set(Sub_set,Set).
+sub_set(Sub_set,[H|Set]):-sub_set(Sub_set,Set).
+
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
 
@@ -39,3 +48,17 @@ pr_ein:- Houses=[_,_,_,_,_],
 		in_list(Houses,[_,WHO2,_,zebra,_]),
 		write(Houses),
 		nl,write(WHO1),nl,write(WHO2).
+
+% Exc 2 (work in progress)
+
+prHair:- Friends=[_,_,_],
+
+ in_list(Friends,[belokurov,ginger]),
+
+(in_list(Friends,[chernov,blond]);
+in_list(Friends,[chernov,ginger])),
+
+(in_list(Friends,[rizhov,brunette]);
+in_list(Friends,[rizhov,blond])),
+
+write(Friends).
