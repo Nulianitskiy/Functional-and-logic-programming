@@ -77,8 +77,15 @@ strangeIter(X,N):-
     X mod 2 =\= 0, NewX is X*3 + 1,strangeIter(NewX,NewN),N is NewN+1,!.
 
 % Exc 14
-countNotPrimeNODs(X,N):-countNPNODs(X,X,N).
+countNotPrimeNODsUp(X,N):-countNPNODs(X,X,N),!.
 countNPNODs(_,1,0):-!.
 countNPNODs(X,Cur,N):-Cur mod 2 =:= 0,NewCur is Cur-1,countNPNODs(X,NewCur,NewN),
     nod(X,NewCur,Num), (Num =:= 1, N is NewN ; Num =\= 1, N is NewN+1);
     Cur mod 2 =\= 0, NewCur is Cur-1, countNPNODs(X,NewCur,NewN), N is NewN.
+
+countNotPrimeNODsDown(X,N):-cNPNODsD(X,0,0,N),!.
+cNPNODsD(X,X,N,N):-!.
+cNPNODsD(X,CurX,CurN,N):-CurX mod 2 =:= 0, NewCurX is CurX+1, nod(X,NewCurX,Num),
+    (Num =:= 1, NewCurN is CurN; Num =\= 1, NewCurN is CurN+1),
+       cNPNODsD(X,NewCurX,NewCurN,N);
+    CurX mod 2 =\= 0, NewCurX is CurX+1,NewCurN is CurN,cNPNODsD(X,NewCurX,NewCurN,N).
