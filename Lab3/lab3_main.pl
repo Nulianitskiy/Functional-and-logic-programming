@@ -75,4 +75,10 @@ strangeIter(1,1):-!.
 strangeIter(X,N):-
     X mod 2 =:= 0, NewX is X div 2,strangeIter(NewX,NewN),N is NewN+1,!;
     X mod 2 =\= 0, NewX is X*3 + 1,strangeIter(NewX,NewN),N is NewN+1,!.
-% ebal ya v rot etot prolog
+
+% Exc 14
+countNotPrimeNODs(X,N):-countNPNODs(X,X,N).
+countNPNODs(_,1,0):-!.
+countNPNODs(X,Cur,N):-Cur mod 2 =:= 0,NewCur is Cur-1,countNPNODs(X,NewCur,NewN),
+    nod(X,NewCur,Num), (Num =:= 1, N is NewN ; Num =\= 1, N is NewN+1);
+    Cur mod 2 =\= 0, NewCur is Cur-1, countNPNODs(X,NewCur,NewN), N is NewN.
