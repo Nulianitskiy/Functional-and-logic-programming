@@ -76,18 +76,13 @@ prGirlsLook:- Girls=[_,_,_],
 write(Girls),!.
 
 % Exc 4
-prWorkers:- Workers=[_,_,_,_,_],
-    in_list(Workers,[_,slesar,_]),
-    in_list(Workers,[_,slesar,yong]),
-    in_list(Workers,[seminov,_,old]),
-    in_list(Workers,[borisov,_,midl]),
-    not(in_list(Workers,[_,tokar,old])),
-    in_list(Workers,[ivanov,_,_]),
-    in_list(Workers,[_,svarshik,_]),
-    in_list(Workers,[W1,slesar,_]),
-    in_list(Workers,[W2,tokar,_]),
-    in_list(Workers,[W3,svarshik,_]),
+theProletarii:- Workers=[_,_,_],
 
-    write("Slesar is "),write(W1),nl,
-    write("Tokar is "),write(W2),nl,
-    write("Svarshik is "),write(W3),nl.
+	in_list(Workers,[slesar,_,0,0,_]),
+	in_list(Workers,[tokar,_,_,1,_]),
+	in_list(Workers,[svarschik,_,_,_,_]),
+	in_list(Workers,[_,borisov,1,_,_]),
+	in_list(Workers,[_,ivanov,_,_,_]),
+	in_list(Workers,[_,semenov,_,2,borisov]),
+
+write(Workers),!.
