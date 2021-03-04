@@ -84,3 +84,7 @@ isU(_,[]):-!.
 isU(X,[H|T]):- X =\= H,isU(X,T).
 isUnique([H|T]):-isU(H,T),isUnique(T).
 isUnique([]):-!.
+
+% Exc 15
+makeUnique([],[]):-!.
+makeUnique([H|T],[H|T1]):-delAll([H|T],H,New),makeUnique(New,T1).
