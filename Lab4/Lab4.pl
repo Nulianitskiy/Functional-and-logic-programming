@@ -150,3 +150,14 @@ countOfEven:-write("Размер массива = "),read(N),nl,
     write("Введите элементы: "),readList(N,List),nl,
     countOfEven(List,Count),
     write("Четных чисел: "),write(Count),nl,!.
+
+% Exc 1.34
+
+% Exc 1.40
+minEvenEl([],9999):-!.
+minEvenEl([H|List],El):-minEvenEl(List,NewEl),(H mod 2 =:= 0,min(H,NewEl,El);H mod 2 =\= 0, El is NewEl),!.
+
+minEvenEl:-write("Размер массива = "),read(N),nl,
+    write("Введите элементы: "),readList(N,List),nl,
+    minEvenEl(List,Min),
+    write("Это число: "),write(Min),nl,!.
