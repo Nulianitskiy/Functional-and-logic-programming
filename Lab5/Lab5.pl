@@ -1,13 +1,4 @@
 % Exc 1
-sub_posl([],_):-!.
-sub_posl(_,[]):-fail,!.
-sub_posl([H|Sub_list],[H|List]):-sub_posl(Sub_list,List),!.
-sub_posl(Sub_list,[_|List]):-sub_posl(Sub_list,List).
-
-sub_set([],[]).
-sub_set([H|Sub_set],[H|Set]):-sub_set(Sub_set,Set).
-sub_set(Sub_set,[H|Set]):-sub_set(Sub_set,Set).
-
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
 
@@ -49,19 +40,22 @@ pr_ein:- Houses=[_,_,_,_,_],
 		write(Houses),
 		nl,write(WHO1),nl,write(WHO2).
 
-% Exc 2 (work in progress)
+% Exc 2
 
-prHair:- Friends=[_,_,_],
+prHairParty:- Friends=[_,_,_],
+    in_list(Friends,[belokurov,_]),
+    in_list(Friends,[chernov,_]),
+    in_list(Friends,[rizhov,_]),
+    in_list(Friends,[_,ginger]),
+    in_list(Friends,[_,blond]),
+    in_list(Friends,[_,brunette]),
 
- in_list(Friends,[belokurov,ginger]),
+    not(in_list(Friends,[belokurov,blond])),
+    not(in_list(Friends,[chernov,brunette])),
+    not(in_list(Friends,[rizhov,ginger])),
+    not(in_list(Friends,[belokurov,brunette])),
 
-(in_list(Friends,[chernov,blond]);
-in_list(Friends,[chernov,ginger])),
-
-(in_list(Friends,[rizhov,brunette]);
-in_list(Friends,[rizhov,blond])),
-
-write(Friends).
+write(Friends),!.
 
 % Exc 3
 
@@ -81,5 +75,22 @@ prGirls:- Girls=[_,_,_],
     in_list(Girls,[valya,_,blue])),
 
     not(in_list(Girls,[valya,white,white])),
-    in_list(Girls,[ann,Color,Color]),
+    in_list(Girls,[ann,Color1,Color1]),
     write(Girls).
+
+% Exc 4
+prWorkers:- Workers=[_,_,_,_,_],
+    in_list(Workers,[_,slesar,_]),
+    in_list(Workers,[_,slesar,yong]),
+    in_list(Workers,[seminov,_,old]),
+    in_list(Workers,[borisov,_,midl]),
+    not(in_list(Workers,[_,tokar,old])),
+    in_list(Workers,[ivanov,_,_]),
+    in_list(Workers,[_,svarshik,_]),
+    in_list(Workers,[W1,slesar,_]),
+    in_list(Workers,[W2,tokar,_]),
+    in_list(Workers,[W3,svarshik,_]),
+
+    write("Slesar is "),write(W1),nl,
+    write("Tokar is "),write(W2),nl,
+    write("Svarshik is "),write(W3),nl.
