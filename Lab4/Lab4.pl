@@ -161,3 +161,16 @@ minEvenEl:-write("Размер массива = "),read(N),nl,
     write("Введите элементы: "),readList(N,List),nl,
     minEvenEl(List,Min),
     write("Это число: "),write(Min),nl,!.
+
+% Exc 1.46
+writePositive([]):-!.
+writePositive([H|List]):-writePositive(List),(H >= 0, write(H),write(", ");H<0,write("")).
+writeNegative([]):-!.
+writeNegative([H|List]):-writeNegative(List),(H < 0, write(H),write(", ");H>=0,write("")).
+
+writePosNeg:-write("Размер массива = "),read(N),nl,
+    write("Введите элементы: "),readList(N,List),nl,
+    write("Результат: "),nl,
+    writePositive(List),nl,
+    writeNegative(List),nl,!.
+
