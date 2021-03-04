@@ -141,3 +141,12 @@ twoMaxEl:-write("Размер массива = "),read(N),nl,
     write("Введите элементы: "),readList(N,List),nl,
     twoMaxEl(List,Max1,Max2),write("Max1 = "),write(Max1),nl,
     write("Max2 = "),write(Max2).
+
+% Exc 1.31
+countOfEven([],0):-!.
+countOfEven([H|List],N):-countOfEven(List,N1),(H mod 2 =:= 0,N is N1+1;
+    H mod 2 =\= 0, N is N1),!.
+countOfEven:-write("Размер массива = "),read(N),nl,
+    write("Введите элементы: "),readList(N,List),nl,
+    countOfEven(List,Count),
+    write("Четных чисел: "),write(Count),nl,!.
