@@ -112,3 +112,32 @@ lenght(List,N):-lenght(List,0,N).
 sameByMean([],_,0):-!.
 sameByMean([H1|List1],List2,N):-sameByMean(List1,List2,N1),
     (member(H1,List2),N is N1+1;not(member(H1,List2)),N is N1),!.
+
+sameByMean:-write("„исло элементов в первом массиве: "),read(N1),nl,
+    write("Ёлементы первого массива: "),readList(N1,List1),nl,
+    write("„исло элементов во втором массиве: "),read(N2),nl,
+    write("Ёлементы второго массива: "),readList(N2,List2),nl,
+    sameByMean(List1,List2,N),
+    write("—хожих по значению: "),write(N),nl,!.
+
+
+% Exc 1.22
+%countMinInInter([],_,_,9999,0):-!.
+%countMinInInter([H|Tail],A,B,Min,N):-countMinInInter(Tail,A,B,Min,N1),
+%    (H>A,H<B,H=:=Min,N is N1+1;not(H>A,H<B,H=:=Min),N is N1).
+% countMinInInter(List,A,B,N):-minListUp(List,Min),countMinInInter(List%,A,B,Min,N).
+
+% Exc 1.24
+max(X,Y,X):-X>Y,!.
+max(_,Y,Y):-!.
+
+maxListUp([],0):-!.
+maxListUp([H|List],Max):-maxListUp(List,NewMax),max(NewMax,H,Max).
+
+twoMaxEl(List,Max1,Max2):-maxListUp(List,Max1),
+    delAll(List,Max1,NewList),maxListUp(NewList,Max2),!.
+
+twoMaxEl:-write("–азмер массива = "),read(N),nl,
+    write("¬ведите элементы: "),readList(N,List),nl,
+    twoMaxEl(List,Max1,Max2),write("Max1 = "),write(Max1),nl,
+    write("Max2 = "),write(Max2).
