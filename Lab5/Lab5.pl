@@ -154,3 +154,30 @@ write(Boys),nl,
 write("It`s mean "),nl,
 write(Who1),write(" is australian"),nl,
 write(Who2),write(" is like tennis"),!.
+
+% Exc 8 Nu tipo
+smartBustards:- Set=[_,_,_,_,_],
+    in_list(Set,[andrey,_,_,no,_]),
+    in_list(Set,[_,dmitry,_,_,no]),
+    in_list(Set,[_,_,boris,_,_]),
+    in_list(Set,[no,_,_,viktor,_]),
+    in_list(Set,[_,no,_,_,grigoriy]),
+
+    in_list(Set,[no,_,_,_,_]),
+    in_list(Set,[_,no,_,_,_]),
+    in_list(Set,[_,_,no,_,_]),
+    in_list(Set,[_,_,_,no,_]),
+    in_list(Set,[_,_,_,_,no]),
+
+    in_list(Set,[andrey,dmitry,no,_,_]),
+    in_list(Set,[andrey,no,boris,no,_]),
+
+ %   in_list(Set,[andrey,_,_,no,_]),
+ %   in_list(Set,[no,_,_,victor,_]),
+
+  %  in_list(Set,[_,dmitry,_,_,no]),
+
+    in_list(Set,[_,dmitry,no,no,_]),
+    in_list(Set,[_,no,_,victor,grigoriy]),
+
+write(Set),!.
