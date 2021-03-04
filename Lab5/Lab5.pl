@@ -130,4 +130,27 @@ artists:- Artist=[_,_,_,_],
     not(in_list(Artist,[saharov,writer])),
     not(in_list(Artist,[voronov,writer])),
 
-write(Artist).
+write(Artist),!.
+
+% Exc 7
+malibuSafeguards:- Boys=[_,_,_],
+    in_list(Boys,[michael,_,basketball,_]),
+    in_list(Boys,[simon,israeli,_,_]),
+    in_list(Boys,[richard,_,_,_]),
+    in_list(Boys,[_,american,_,_]),
+    in_list(Boys,[_,australian,_,_]),
+    in_list(Boys,[_,_,tennis,_]),
+    in_list(Boys,[_,_,cricket,first]),
+    in_list(Boys,[_,_,_,second]),
+    in_list(Boys,[_,_,_,third]),
+
+    not(in_list(Boys,[michael,american,_,_])),
+    not(in_list(Boys,[simon,_,tennis,_])),
+
+    in_list(Boys,[Who1,australian,_,_]),
+    in_list(Boys,[Who2,_,tennis,_]),
+
+write(Boys),nl,
+write("It`s mean "),nl,
+write(Who1),write(" is australian"),nl,
+write(Who2),write(" is like tennis"),!.
