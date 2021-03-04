@@ -111,3 +111,23 @@ theDrinks:- Drinks=[_,_,_,_],
     next_to([jar,_],[_,milk],Drinks),
 
 write(Drinks),!.
+
+% Exc 6
+artists:- Artist=[_,_,_,_],
+    in_list(Artist,[voronov,_]),
+    in_list(Artist,[pavlov,_]),
+    in_list(Artist,[levitsky,_]),
+    in_list(Artist,[saharov,_]),
+    in_list(Artist,[_,dancer]),
+    in_list(Artist,[_,painter]),
+    in_list(Artist,[_,singer]),
+    in_list(Artist,[_,writer]),
+
+    not(in_list(Artist,[voronov,singer])),
+    not(in_list(Artist,[voronov,painter])),
+    not(in_list(Artist,[pavlov,painter])),
+    not(in_list(Artist,[pavlov,writer])),
+    not(in_list(Artist,[saharov,writer])),
+    not(in_list(Artist,[voronov,writer])),
+
+write(Artist).
