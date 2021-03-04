@@ -95,3 +95,8 @@ counter([H|T],El,Num,Count) :-
     (H =:= El -> NewNum is Num+1;NewNum is Num),
     counter(T,El,NewNum,Count).
 counter(List,El,Count):-counter(List,El,0,Count).
+
+% Exc 17
+lenght([],N,N):-!.
+lenght([_|Tail],I,N):-NewI is I+1,lenght(Tail,NewI,N).
+lenght(List,N):-lenght(List,0,N).
