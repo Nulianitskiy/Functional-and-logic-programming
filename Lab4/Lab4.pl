@@ -73,3 +73,8 @@ p([HS|Sublist],[HL|List]):-p(Sublist,List),HS =:= HL.
 % Задание 12
 delByNumb(List,[_|List],0):-!.
 delByNumb([H|List1],[H|List2],Numb):-N is Numb - 1, delByNumb(List1,List2,N).
+
+% Задание 13
+delAll([],_,[]):-!.
+delAll([H|T],El,[H|T1]):-H=\=El,delAll(T,El,T1),!.
+delAll([_|T],El,T1):-delAll(T,El,T1).
