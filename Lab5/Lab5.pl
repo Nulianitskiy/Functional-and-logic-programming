@@ -86,3 +86,28 @@ theProletarii:- Workers=[_,_,_],
 	in_list(Workers,[_,semenov,_,2,borisov]),
 
 write(Workers),!.
+
+% Exc 5
+theDrinks:- Drinks=[_,_,_,_],
+    in_list(Drinks,[bottle,_]),
+    in_list(Drinks,[glass,_]),
+    in_list(Drinks,[jug,_]),
+    in_list(Drinks,[jar,_]),
+    in_list(Drinks,[_,milk]),
+    in_list(Drinks,[_,lemonade]),
+    in_list(Drinks,[_,kvass]),
+    in_list(Drinks,[_,water]),
+
+    not(in_list(Drinks,[bottle,water])),
+    not(in_list(Drinks,[bottle,milk])),
+
+    sprava_next([jug,_],[_,lemonade],Drinks),
+    sprava_next([_,lemonade],[_,kvass],Drinks),
+
+    not(in_list(Drinks,[jar,lemonade])),
+    not(in_list(Drinks,[jar,water])),
+
+    next_to([jar,_],[glass,_],Drinks),
+    next_to([jar,_],[_,milk],Drinks),
+
+write(Drinks),!.
