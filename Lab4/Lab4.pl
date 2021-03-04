@@ -88,3 +88,10 @@ isUnique([]):-!.
 % Exc 15
 makeUnique([],[]):-!.
 makeUnique([H|T],[H|T1]):-delAll([H|T],H,New),makeUnique(New,T1).
+
+% Exc 16
+counter([],_,Count,Count):-!.
+counter([H|T],El,Num,Count) :-
+    (H =:= El -> NewNum is Num+1;NewNum is Num),
+    counter(T,El,NewNum,Count).
+counter(List,El,Count):-counter(List,El,0,Count).
