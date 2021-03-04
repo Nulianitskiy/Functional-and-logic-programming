@@ -71,8 +71,8 @@ p([],[]):-!.
 p([HS|Sublist],[HL|List]):-p(Sublist,List),HS =:= HL.
 
 % Задание 12
-delByNumb(List,[_|List],0):-!.
-delByNumb([H|List1],[H|List2],Numb):-N is Numb - 1, delByNumb(List1,List2,N).
+delByNum([_|T],0,T):-!.
+delByNum([H|T],N,[H|T1]):-N1 is N-1,delByNum(T,N1,T1).
 
 % Задание 13
 delAll([],_,[]):-!.
@@ -100,3 +100,15 @@ counter(List,El,Count):-counter(List,El,0,Count).
 lenght([],N,N):-!.
 lenght([_|Tail],I,N):-NewI is I+1,lenght(Tail,NewI,N).
 lenght(List,N):-lenght(List,0,N).
+
+
+% Exc 1.9
+%isIt([H|_],H):-!.
+%isIt(List,El):-delByNum(List,0,Tail),isIt(Tail,El).
+%beforeLastMin(List):-minListUp(List,Min),reverse(List,RevList),
+%    isIt(RevList,Min),write(RevList).
+
+% Exc 1.10
+sameByMean([],_,0):-!.
+sameByMean([H1|List1],List2,N):-sameByMean(List1,List2,N1),
+    (member(H1,List2),N is N1+1;not(member(H1,List2)),N is N1),!.
