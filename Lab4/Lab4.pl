@@ -78,3 +78,9 @@ delByNumb([H|List1],[H|List2],Numb):-N is Numb - 1, delByNumb(List1,List2,N).
 delAll([],_,[]):-!.
 delAll([H|T],El,[H|T1]):-H=\=El,delAll(T,El,T1),!.
 delAll([_|T],El,T1):-delAll(T,El,T1).
+
+% Exc 14
+isU(_,[]):-!.
+isU(X,[H|T]):- X =\= H,isU(X,T).
+isUnique([H|T]):-isU(H,T),isUnique(T).
+isUnique([]):-!.
