@@ -100,3 +100,7 @@ uncle(X):-uncle(Y,X),write(Y),write(", "),fail.
 
 nephew(X,Y):-parent(Z,Y),parent(Z,H),parent(H,X),Y\=H,man(Z),man(X).
 nephew(X):-nephew(Y,X),write(Y),write(", "),fail.
+
+bruh(X,Y):-wife(Z,Y),brother(H,Z),parent(H,X),man(X).
+bruh(X):-bruh(Y,X),write(Y),write(", "),fail.
+
