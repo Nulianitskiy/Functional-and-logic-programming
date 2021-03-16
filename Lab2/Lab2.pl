@@ -33,6 +33,8 @@ ruler(musolini,1).
 ruler(newton,0).
 ruler(talleyrand,0).
 
+ruler(gaidai,0).
+
 from(putin,0).
 from(navalny,0).
 from(medvedev,0).
@@ -67,6 +69,8 @@ from(cherchell,2).
 from(musolini,2).
 from(newton,2).
 from(talleyrand,2).
+
+from(gaidai,0).
 
 ideology(putin,1).
 ideology(navalny,2).
@@ -103,6 +107,8 @@ ideology(musolini,2).
 ideology(newton,1).
 ideology(talleyrand,1).
 
+ideology(gaidai,2).
+
 life(putin,1).
 life(navalny,1).
 life(medvedev,1).
@@ -138,6 +144,8 @@ life(musolini,0).
 life(newton,0).
 life(talleyrand,0).
 
+life(gaidai,0).
+
 opinion(putin,1).
 opinion(navalny,1).
 opinion(medvedev,2).
@@ -172,6 +180,8 @@ opinion(cherchell,0).
 opinion(musolini,1).
 opinion(newton,0).
 opinion(talleyrand,1).
+
+opinion(gaidai,2).
 
 question1(X1):-write("Он правит/правил страной?"),nl,
               write("0 - Нет"),nl,
@@ -212,4 +222,4 @@ pr:- question1(X1),
      ideology(X,X3),
      life(X,X4),
      opinion(X,X5),
-     write("И ваш покемон: " , X),nl,fail.
+     write("И ваш покемон: "),write(X),nl,fail.
