@@ -100,3 +100,9 @@ prExc5:-read_str(A,_),reverse(A,[H|_]),numSimbLast(A,H,0),!.
 numSimbLast([],_,_):-!.
 numSimbLast([El|T],El,I):-write(I),write(" "),NI is I+1,numSimbLast(T,El,NI),!.
 numSimbLast([_|T],El,I):-NI is I+1,numSimbLast(T,El,NI),!.
+
+% Exc 6
+prExc6:-read_str(A,_),writeThird(A).
+
+writeThird([]):-!.
+writeThird([_,_,H3|T]):-name(NH3,[H3]),write(NH3),write(" "),writeThird(T).
