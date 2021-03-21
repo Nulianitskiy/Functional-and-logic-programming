@@ -106,3 +106,11 @@ prExc6:-read_str(A,_),writeThird(A).
 
 writeThird([]):-!.
 writeThird([_,_,H3|T]):-name(NH3,[H3]),write(NH3),write(" "),writeThird(T).
+
+% Exc 7
+prExc7:-read_str(A,_),name(+,Pl),name(-,Mi),name(0,Ze),
+	countSimb(A,0,NPl,Pl),countSimb(A,0,NMi,Mi),countSimb(A,0,NZe,Ze),
+	Sum is NPl+NMi+NZe,write("Count = "),write(Sum).
+
+countSimb([],N,N,_):-!.
+countSimb([H|T],I,N,Simb):-(H=:=Simb -> NI is I+1,countSimb(T,NI,N,Simb));countSimb(T,I,N,Simb).
