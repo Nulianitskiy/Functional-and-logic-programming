@@ -84,3 +84,12 @@ get_word(A,Word,A2):-get_word(A,[],Word,A2).
 get_word([],Word,Word,[]).
 get_word([32|T],Word,Word,T):-!.
 get_word([H|T],W,Word,A2):-append(W,[H],W1),get_word(T,W1,Word,A2).
+
+% Exc 4
+prExc4:-read_str(A,N),(N>5 -> write3(A),reverse(A,NA),write3(NA);writeFirst(A)).
+
+write3([H1,H2,H3|_]):-name(NH1,[H1]),write(NH1),write(" "),name(NH2,[H2]),write(NH2),write(" "),name(NH3,[H3]),write(NH3),write(" ").
+
+writeFirst([H|T]):-writeFirst(H,T),name(NH,[H]),write(NH).
+writeFirst(_,[]):-!.
+writeFirst(H,[_|T]):-writeFirst(H,T),name(NH,[H]),write(NH),write(" ").
