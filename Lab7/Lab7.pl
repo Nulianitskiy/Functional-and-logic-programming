@@ -114,3 +114,12 @@ prExc7:-read_str(A,_),name(+,Pl),name(-,Mi),name(0,Ze),
 
 countSimb([],N,N,_):-!.
 countSimb([H|T],I,N,Simb):-(H=:=Simb -> NI is I+1,countSimb(T,NI,N,Simb));countSimb(T,I,N,Simb).
+
+% Exc 8
+prExc8:-read_str(A,_),whoFirst(A,120,119).
+
+whoFirst([H|_],H,_):-!,write("Первый x").
+whoFirst([H|_],_,H):-!,write("Первый w").
+whoFirst([],_,_):-!,write("Такого нет").
+whoFirst([_|T],X,W):-whoFirst(T,X,W).
+
