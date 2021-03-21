@@ -131,3 +131,8 @@ prExc9:-write("Строка 1 "),read_str(A,NA),write("Строка 2 "),
 writeNTime(_,N,N):-!.
 writeNTime(List,I,N):-write_str(List),write(" "),NI is I+1,
 	writeNTime(List,NI,N).
+
+% Exc 10
+prExc10:-read_str(A,_),excChanger(A,ChA),name(NormA,ChA),write(NormA).
+
+excChanger([H1,H2,H3|T],Ch):-(H1 is 97,H2 is 98,H3 is 99->append([119,119,119],T,Ch);append([H1,H2,H3|T],[122,122,122],Ch)).
