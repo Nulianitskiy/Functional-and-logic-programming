@@ -123,3 +123,11 @@ whoFirst([H|_],_,H):-!,write("Первый w").
 whoFirst([],_,_):-!,write("Такого нет").
 whoFirst([_|T],X,W):-whoFirst(T,X,W).
 
+% Exc 9
+prExc9:-write("Строка 1 "),read_str(A,NA),write("Строка 2 "),
+	read_str(B,NB),(NB > NA -> N is NB-NA, writeNTime(B,0,N);
+		       N is NA-NB,writeNTime(A,0,N)).
+
+writeNTime(_,N,N):-!.
+writeNTime(List,I,N):-write_str(List),write(" "),NI is I+1,
+	writeNTime(List,NI,N).
