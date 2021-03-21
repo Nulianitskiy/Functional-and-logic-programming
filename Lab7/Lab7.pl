@@ -93,3 +93,10 @@ write3([H1,H2,H3|_]):-name(NH1,[H1]),write(NH1),write(" "),name(NH2,[H2]),write(
 writeFirst([H|T]):-writeFirst(H,T),name(NH,[H]),write(NH).
 writeFirst(_,[]):-!.
 writeFirst(H,[_|T]):-writeFirst(H,T),name(NH,[H]),write(NH),write(" ").
+
+% Exc 5
+prExc5:-read_str(A,_),reverse(A,[H|_]),numSimbLast(A,H,0),!.
+
+numSimbLast([],_,_):-!.
+numSimbLast([El|T],El,I):-write(I),write(" "),NI is I+1,numSimbLast(T,El,NI),!.
+numSimbLast([_|T],El,I):-NI is I+1,numSimbLast(T,El,NI),!.
