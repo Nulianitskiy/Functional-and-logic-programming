@@ -64,7 +64,8 @@ build_all_perm_rep(File):-
 	told.
 
 % Exc 1
-prExc1:-read_str_f(A,X,0),write_str(A),write(" , "),write_str(A),write(" , "),write_str(A),write(" , "),write(X).
+prExc1:-read_str_f(A,X,0),write_str(A),write(" , "),write_str(A),
+	write(" , "),write_str(A),write(" , "),write(X).
 
 % Exc 2
 prExc2:-read_str(A,_),count_words(A,K),write(K).
@@ -72,7 +73,8 @@ prExc2:-read_str(A,_),count_words(A,K),write(K).
 count_words(A,K):-count_words(A,0,K).
 
 count_words([],K,K):-!.
-count_words(A,I,K):-skip_space(A,A1),get_word(A1,Word,A2),Word \=[],I1 is I+1,count_words(A2,I1,K),!.
+count_words(A,I,K):-skip_space(A,A1),get_word(A1,Word,A2),Word \=[],
+	I1 is I+1,count_words(A2,I1,K),!.
 count_words(_,K,K).
 
 skip_space([32|T],A1):-skip_space(T,A1),!.
@@ -85,10 +87,53 @@ get_word([],Word,Word,[]).
 get_word([32|T],Word,Word,T):-!.
 get_word([H|T],W,Word,A2):-append(W,[H],W1),get_word(T,W1,Word,A2).
 
+% Exc 3
+get_words(A,Words,K):-get_words(A,[],Words,0,K).
+
+get_words([],B,B,K,K):-!.
+get_words(A,Temp_words,B,I,K):-
+	skip_space(A,A1),get_word(A1,Word,A2),Word \=[],
+	I1 is I+1,append(Temp_words,[Word],T_w),get_words(A2,T_w,B,I1,K),!.
+get_words(_,B,B,K,K).
+
+prExc3:-read_str(A,_),get_words(A,Words,_),unique_elems(Words,U_words),
+		counts(U_words,C,Words),indOfMax(C,Ind),
+		el_by_number(U_words,Ind,El),write_str(El).
+
+
+counts([],[],_):-!.
+counts([Word|T_words],[Count|T_counts],Words):-
+	count(Word,Words,Count),counts(T_words,T_counts,Words).
+
+el_by_number(A,Ind,El):-el_by_number(A,1,Ind,El).
+el_by_number([],_,_,nil):-!.
+el_by_number([El|_],Ind,Ind,El):-!.
+el_by_number([_|T],I,Ind,El):-I1 is I+1,el_by_number(T,I1,Ind,El).
+
+%1. Uniq_el(A,B) В элементы списка А без повторов
+%2. count(El,List,Count) сколько раз El в списке
+%3. номер мин имального элемента списка (нумерация с 1).
+
+count(_, [], 0):-!.
+count(Elem, List, X):- count(Elem, List, 0, X).
+count(_, [], Count, Count):- !.
+count(Elem, [Elem|T], Count,X):- Count1 is Count + 1,count(Elem, T, Count1, X), !.
+count(Elem, [_|T], Count, X):- count(Elem, T, Count, X).
+
+indOfMax(X,Y):-indexOfMin(X,Y).
+indexOfMin([], -1):- !.
+indexOfMin([H|T], X):-indexOfMin(T, 1, 1, X, H).
+indexOfMin([], _, MinInd, MinInd, _):-!.
+indexOfMin([H|T], CurInd, _, X, CurMin):-
+	H > CurMin, NewCurInd is CurInd + 1,
+	indexOfMin(T, NewCurInd, NewCurInd, X, H), !.
+indexOfMin([_|T], CurInd, MinInd, X, CurMin):-
+	NewCurInd is CurInd + 1, indexOfMin(T, NewCurInd, MinInd, X, CurMin).
 % Exc 4
 prExc4:-read_str(A,N),(N>5 -> write3(A),reverse(A,NA),write3(NA);writeFirst(A)).
 
-write3([H1,H2,H3|_]):-name(NH1,[H1]),write(NH1),write(" "),name(NH2,[H2]),write(NH2),write(" "),name(NH3,[H3]),write(NH3),write(" ").
+write3([H1,H2,H3|_]):-name(NH1,[H1]),write(NH1),write(" "),
+	name(NH2,[H2]),write(NH2),write(" "),name(NH3,[H3]),write(NH3),write(" ").
 
 writeFirst([H|T]):-writeFirst(H,T),name(NH,[H]),write(NH).
 writeFirst(_,[]):-!.
