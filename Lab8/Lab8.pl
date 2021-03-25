@@ -90,3 +90,14 @@ max(List, MaxEl):- max(List, 0, MaxEl).
 max([],CurMax, CurMax):- !.
 max([H|T], CurMax, X):- H > CurMax, NewMax is H, max(T,NewMax,X), !.
 max([_|T], CurMax, X):- max(T, CurMax, X).
+
+% Exc 2
+
+prCountNoSpace:- see('C:/Users/User/Prolog.txt'), read_list_str(List), seen, noSpace(List,0,N),writeln(N).
+
+noSpace([],N,N):-!.
+noSpace([H|T],N,NSp):-spaceCounter(H)->NN is N+1,noSpace(T,NN,NSp);noSpace(T,N,NSp).
+
+spaceCounter([]):-!.
+spaceCounter([H|_]):-H is 32,!,fail.
+spaceCounter([_|T]):-spaceCounter(T).
