@@ -126,16 +126,16 @@ aveA([H|T],Ave):-countAStr(H,0,CountA),(CountA>Ave->name(H1,H),writeln(H1),
 % Exc 4
 
 prFrequentWord:-see('C:/Users/User/Prolog.txt'),read_list_str(List), seen,
-    words_in_all_str(List,[],List_frequent),
+    wordsAllStr(List,[],List_frequent),
     unique_elems(List_frequent,Unique_words),
     counts(Unique_words,C,List_frequent),
     indOfMax(C,Ind),el_by_number(Unique_words,Ind,Word),
     name(Word1,Word),writeln(Word1).
 
 
-words_in_all_str([],List_frequent,List_frequent):-!.
-words_in_all_str([Head|Tail],I,List_frequent):-get_words(Head,Words),
-    append(I,Words,I1),words_in_all_str(Tail,I1,List_frequent).
+wordsAllStr([],List_frequent,List_frequent):-!.
+wordsAllStr([Head|Tail],I,List_frequent):-get_words(Head,Words),
+    append(I,Words,I1),wordsAllStr(Tail,I1,List_frequent).
 
 
 get_words(A,Words):-get_words(A,[],Words).
@@ -188,3 +188,26 @@ get_word([],Word,Word,[]).
 get_word([32|T],Word,Word,T):-!.
 get_word([H|T],W,Word,New_Str_after_word):-append(W,[H],W1),
     get_word(T,W1,Word,New_Str_after_word).
+
+% Exc 5
+
+prUniqueWords:-see('C:/Users/User/Prolog.txt'),read_list_str(List), seen,
+    wordsAllStr(List,[],AllWords),notRepeat(AllWords,UniqueWords),
+    tell('C:/Users/User/PrologOut.txt'),noIncidence(List,UniqueWords),told.
+
+noIncidence([],_):-!.
+noIncidence([H|T],UniqueWords):-(get_words(H,WordsHead),
+    coin_str(WordsHead,UniqueWords)->write_str(H),nl,
+    noIncidence(T,UniqueWords);noIncidence(T,UniqueWords)).
+
+coin_str([],_):-!.
+coin_str([H|T],UniqueWords):-in_list(UniqueWords,H),coin_str(T,UniqueWords).
+
+del(_,[],[]):-!.
+del(H,[H|T],Res):-del(H,T,Res),!.
+del(H,[H1|T],[H1|Res]):-not(H=H1),del(H,T,Res).
+
+notRepeat([],[]):-!.
+notRepeat([H|T],[H|Res]):-not(in_list(T,H)),
+    notRepeat(T,Res),!.
+notRepeat([H|T],Res):-del(H,T,H1),notRepeat(H1,Res).
