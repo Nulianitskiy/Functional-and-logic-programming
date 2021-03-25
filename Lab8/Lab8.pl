@@ -101,3 +101,24 @@ noSpace([H|T],N,NSp):-spaceCounter(H)->NN is N+1,noSpace(T,NN,NSp);noSpace(T,N,N
 spaceCounter([]):-!.
 spaceCounter([H|_]):-H is 32,!,fail.
 spaceCounter([_|T]):-spaceCounter(T).
+
+% Exc 3
+
+prAveA:- see('C:/Users/User/Prolog.txt'),read_list_str(List),seen,
+    countA(List,[],ListCount),average(ListCount,Ave),aveA(List,Ave).
+
+countA([],ListCount,ListCount):-!.
+countA([H|T],I,ListCount):-countAStr(H,0,CountA),append(I,[CountA],NI),
+    countA(T,NI,ListCount).
+
+countAStr([],N,N):-!.
+countAStr([H|T],I,N):-(H is 65->NI is I+1,countAStr(T,NI,N);countAStr(T,I,N)).
+
+average(Count,Ave):-average(Count,0,Sum,0,N),Ave is Sum/N.
+average([],Sum,Sum,N,N):-!.
+average([H|T],CSum,Sum,CN,N):-NewSum is CSum+H,NewN is CN+1,
+    average(T,NewSum,Sum,NewN,N).
+
+aveA([],_):-!.
+aveA([H|T],Ave):-countAStr(H,0,CountA),(CountA>Ave->name(H1,H),writeln(H1),
+                                        aveA(T,Ave);aveA(T,Ave)).
