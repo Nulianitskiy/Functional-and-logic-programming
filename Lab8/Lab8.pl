@@ -122,3 +122,69 @@ average([H|T],CSum,Sum,CN,N):-NewSum is CSum+H,NewN is CN+1,
 aveA([],_):-!.
 aveA([H|T],Ave):-countAStr(H,0,CountA),(CountA>Ave->name(H1,H),writeln(H1),
                                         aveA(T,Ave);aveA(T,Ave)).
+
+% Exc 4
+
+prFrequentWord:-see('C:/Users/User/Prolog.txt'),read_list_str(List), seen,
+    words_in_all_str(List,[],List_frequent),
+    unique_elems(List_frequent,Unique_words),
+    counts(Unique_words,C,List_frequent),
+    indOfMax(C,Ind),el_by_number(Unique_words,Ind,Word),
+    name(Word1,Word),writeln(Word1).
+
+
+words_in_all_str([],List_frequent,List_frequent):-!.
+words_in_all_str([Head|Tail],I,List_frequent):-get_words(Head,Words),
+    append(I,Words,I1),words_in_all_str(Tail,I1,List_frequent).
+
+
+get_words(A,Words):-get_words(A,[],Words).
+
+get_words([],List_words,List_words):-!.
+get_words(Str,Words,List_words):-skip_space(Str,New_Str),
+    get_word(New_Str,Word,New_Str_after_word),
+    Word \=[],append(Words,[Word],New_list_word),
+    get_words(New_Str_after_word,New_list_word,List_words),!.
+get_words(_,List_words,List_words).
+
+
+counts([],[],_):-!.
+counts([Word|T_words],[Count|T_counts],Words):-
+	count(Word,Words,Count),counts(T_words,T_counts,Words).
+
+count(_, [], 0):-!.
+count(Elem, List, X):- count(Elem, List, 0, X).
+count(_, [], Count, Count):- !.
+count(Elem, [Elem|T], Count, X):- Count1 is Count + 1,
+    count(Elem, T, Count1, X), !.
+count(Elem, [_|T], Count, X):- count(Elem, T, Count, X).
+
+
+el_by_number(A,Ind,El):-el_by_number(A,1,Ind,El).
+el_by_number([],_,_,nil):-!.
+el_by_number([El|_],Ind,Ind,El):-!.
+el_by_number([_|T],I,Ind,El):-I1 is I+1,el_by_number(T,I1,Ind,El).
+
+
+indOfMax(X,Y):-indexOfMin(X,Y).
+indexOfMin([], -1):- !.
+indexOfMin([H|T], X):-indexOfMin(T, 1, 1, X, H).
+indexOfMin([], _, MinInd, MinInd, _):-!.
+indexOfMin([H|T], CurInd, _, X, CurMin):-
+	H > CurMin, NewCurInd is CurInd + 1,
+        indexOfMin(T, NewCurInd, NewCurInd, X, H), !.
+indexOfMin([_|T], CurInd, MinInd, X, CurMin):-
+	NewCurInd is CurInd + 1, indexOfMin(T, NewCurInd, MinInd, X, CurMin).
+
+
+skip_space([32|Tail],New_Str):-skip_space(Tail,New_Str),!.
+skip_space(New_Str,New_Str).
+
+
+get_word([],[],[]):-!.
+get_word(Str,Word,New_Str_after_word):-get_word(Str,[],Word,New_Str_after_word).
+
+get_word([],Word,Word,[]).
+get_word([32|T],Word,Word,T):-!.
+get_word([H|T],W,Word,New_Str_after_word):-append(W,[H],W1),
+    get_word(T,W1,Word,New_Str_after_word).
