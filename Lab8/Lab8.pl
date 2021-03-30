@@ -211,3 +211,10 @@ notRepeat([],[]):-!.
 notRepeat([H|T],[H|Res]):-not(in_list(T,H)),
     notRepeat(T,Res),!.
 notRepeat([H|T],Res):-del(H,T,H1),notRepeat(H1,Res).
+
+% Exc 2.4
+
+prPalindrome:-read_str(A,_),reverse(A,RevA),p(A,RevA).
+
+p([],[]):-!.
+p([HS|Sublist],[HL|List]):-p(Sublist,List),HS =:= HL.
