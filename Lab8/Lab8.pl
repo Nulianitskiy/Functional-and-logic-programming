@@ -229,3 +229,10 @@ count_words([],K,K):-!.
 count_words(A,I,K):-skip_space(A,A1),get_word(A1,Word,A2),Word \=[],
 	I1 is I+1,count_words(A2,I1,K),!.
 count_words(_,K,K).
+
+% Exc 2.15
+
+prNumberCounter:-read(X),numCount(X,Y),write(Y).
+
+numCount(0,0):-!.
+numCount(X,N):-NewX is X div 10,numCount(NewX,NewN),N is NewN +1.
