@@ -218,3 +218,14 @@ prPalindrome:-read_str(A,_),reverse(A,RevA),p(A,RevA).
 
 p([],[]):-!.
 p([HS|Sublist],[HL|List]):-p(Sublist,List),HS =:= HL.
+
+% Exc 2.11
+
+wordsCounter:-read_str(A,_),count_words(A,K),write(K).
+
+count_words(A,K):-count_words(A,0,K).
+
+count_words([],K,K):-!.
+count_words(A,I,K):-skip_space(A,A1),get_word(A1,Word,A2),Word \=[],
+	I1 is I+1,count_words(A2,I1,K),!.
+count_words(_,K,K).
