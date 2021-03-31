@@ -52,4 +52,16 @@ sochet_p([H|Sub_set],K,[H|Set]):-K1 is K-1,sochet_p(Sub_set,K1,[H|Set]).
 sochet_p(Sub_set,K,[_|Set]):-sochet_p(Sub_set,K,Set).
 pr_sochet_p:-read_str(A,_),read(K),sochet_p(B,K,A),write_str(B),nl,fail.
 
+% Exc 2
 
+only2A:-tell('C:/Users/User/Desktop/Resources/2 Course/Funkcionalnoe_i_logicheskoe_prevozmoganie/Lab9/Out.txt'),
+	o2a([a,b,c,d,e,f],5,[]),told.
+
+o2a(_,0,Perm1):-count(a,Perm1,N),(N=:=2->write_str(Perm1),nl,!,fail;!,fail).
+o2a(A,N,Perm):-in_list(A,El),N1 is N-1,o2a(A,N1,[El|Perm]).
+
+count(_, [], 0):-!.
+count(Elem, List, X):- count(Elem, List, 0, X).
+count(_, [], Count, Count):- !.
+count(Elem, [Elem|T], Count,X):- Count1 is Count + 1,count(Elem, T, Count1, X), !.
+count(Elem, [_|T], Count, X):- count(Elem, T, Count, X).
