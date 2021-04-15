@@ -1,8 +1,5 @@
 fun main(args: Array<String>) {
-    meth1(12345)
-    meth2(123456)
-    var ans = meth3(123456789)
-    println("Method3 = $ans")
+    choser()
 }
 fun numSum(x : Int){
     var sum = 0
@@ -22,6 +19,7 @@ fun numMin(x:Int){
     }
     println("Min is $min")
 }
+
 fun numMax(x:Int){
     var max = x % 10
     var y = x
@@ -31,6 +29,7 @@ fun numMax(x:Int){
     }
     println("Max is $max")
 }
+
 fun numMult(x:Int){
     var mult = 1
     var y = x
@@ -90,4 +89,30 @@ fun meth3(x:Int):Int{
     }
     println("max = $max sum = $sum")
     return max*sum
+}
+
+fun choser(){
+    println("Итак, есть 4 варианта:\n 1 - Поиск суммы цифр \n 2 - Поиск минимума \n " +
+            "3 - Поиск максимума \n 4 - Поиск произведения цифр \n Любой другой символ остановит программу")
+    var choser = readLine()
+    var x = 0
+    when(choser){
+        "1" -> {println("Введите значение: ")
+            val y = readLine()!!.toInt()
+            numSum(y)
+            choser()}
+        "2" ->{println("Введите значение: ")
+            val y = readLine()!!.toInt()
+            numMin(y)
+            choser()}
+        "3"->{println("Введите значение: ")
+            val y = readLine()!!.toInt()
+            numMax(y)
+            choser()}
+        "4"->{println("Введите значение: ")
+            val y = readLine()!!.toInt()
+            numMult(y)
+            choser()}
+        else -> println("Ок, значит, на этом мы и закончим")
+    }
 }
