@@ -1,6 +1,8 @@
 fun main(args: Array<String>) {
     meth1(12345)
     meth2(123456)
+    var ans = meth3(123456789)
+    println("Method3 = $ans")
 }
 fun numSum(x : Int){
     var sum = 0
@@ -65,4 +67,27 @@ fun meth2(x:Int){
         y /= 10
     }
     println("modernMax is $max")
+}
+
+fun minDel(x:Int): Int{
+    var i = 2
+    while(x % i !=0) i++
+    return i
+}
+fun meth3(x:Int):Int{
+    var max = -1
+    var sum = 0
+    var y = x
+    var mindel = minDel(x)
+    while (y > 0){
+        if (y % 10 > max && gcd(y % 10, x)==1 && (y % 10) % mindel != 0) max = y % 10
+        if (y % 10 < 5) sum += y % 10
+        y /= 10
+    }
+    if(max<0){
+        println("Число говна конечно")
+        return -1
+    }
+    println("max = $max sum = $sum")
+    return max*sum
 }
