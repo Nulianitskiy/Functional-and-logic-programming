@@ -1,8 +1,5 @@
 fun main(args: Array<String>) {
-    numSum(1234)
-    numMin(1234)
-    numMax(1234)
-    numMult(1234)
+    meth1(12345)
 }
 fun numSum(x : Int){
     var sum = 0
@@ -39,4 +36,22 @@ fun numMult(x:Int){
         y /= 10
     }
     println("Mult is $mult")
+}
+
+fun gcd(a: Int, b: Int): Int {
+    if (b == 0) return a
+    return gcd(b, a % b)
+}
+
+fun meth1(x: Int){
+    var count = 0
+    var y = x
+    var c = 1
+    while(y>0){
+        c = y%10
+        y/=10
+        if(c%2==1) continue
+        if(gcd(c,x)==1) count++
+    }
+    println("Method1 = $count")
 }
