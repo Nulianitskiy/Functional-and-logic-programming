@@ -66,17 +66,30 @@ count(_, [], Count, Count):- !.
 count(Elem, [Elem|T], Count,X):- Count1 is Count + 1,count(Elem, T, Count1, X), !.
 count(Elem, [_|T], Count, X):- count(Elem, T, Count, X).
 
+% Exc 3
+
+only2ANoPovt:-tell('C:/Users/User/Desktop/Resources/2 Course/Funkcionalnoe_i_logicheskoe_prevozmoganie/Lab9/Out.txt'),
+	o2aNoPovt([a,b,c,d,e,f],5,[]),told.
+
+o2aNoPovt(_,0,Perm):-countGroup3(Perm)->write_str(Perm),nl,!,fail;!,fail.
+o2aNoPovt(A,N,Perm):-in_list(A,El),N1 is N-1,o2aNoPovt(A,N1,[El|Perm]).
+
+countGroup3(Perm):-count(a,Perm,Na),Na is 2,
+		count(b,Pern,Nb),(Nb is 1;Nb is 0),
+		count(c,Pern,Nc),(Nc is 1;Nc is 1),
+                count(d,Pern,Nd),(Nd is 1;Nd is 1),
+                count(e,Pern,Ne),(Ne is 1;Ne is 1),
+                count(f,Pern,Nf),(Nf is 1;Nf is 1).
+
 % Exc 11
 beznakazanno:-tell('C:/Users/User/Desktop/Resources/2 Course/Funkcionalnoe_i_logicheskoe_prevozmoganie/Lab9/Out.txt'),
-	beznako([b,e,z,n,a,k,o],12,[]),told.
+	beznako([b,e,z,n,a,k,o],5,[]),told.
 
 beznako(_,0,Perm1):-countGroup11(Perm1)->write_str(Perm1),nl,!,fail;!,fail.
 beznako(A,N,Perm):-in_list(A,El),N1 is N-1,beznako(A,N1,[El|Perm]).
 
 countGroup11(Perm):-count(b,Perm,Nb),Nb is 1,
 		count(e,Perm,Ne),Ne is 1,
-		count(z,Perm,Nz),Nz is 2,
-		count(n,Perm,Nn),Nn is 3,
-		count(a,Perm,Na),Na is 3,
-		count(k,Perm,Nk),Nk is 1,
-		count(o,Perm,No),No is 1.
+		count(z,Perm,Nz),Nz is 1,
+		count(n,Perm,Nn),Nn is 1,
+		count(a,Perm,Na),Na is 1.

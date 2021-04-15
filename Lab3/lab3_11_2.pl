@@ -44,3 +44,16 @@ maxNumNot3D(X,Max,N):-X1 is X div 10, N1 is X mod 10, not3(N1,N2),
     max(Max,N2,Max1), maxNumNot3D(X1,Max1,N),!.
 maxNumNot3Down(X,N):-maxNumNot3D(X,0,N).
 
+nod(A,A,A) :- !.
+nod(A,B,D) :- A>B, !, C is A-B, nod(C,B,D).
+nod(A,B,D) :- C is B-A, nod(A,C,D).
+
+prime(X):-prim(X,X),!.
+prim(2,_):-!.
+prim(CurX,X):-NewCurX is CurX-1,prim(NewCurX,X),X mod NewCurX =\= 0.
+
+divsCount(X,N):-divsC(X,X,N),!.
+divsC(_,0,0):-!.
+divsC(X,CurX,N):-
+    X mod CurX =:= 0, NewCurX is CurX-1,divsC(X,NewCurX,NewN),N is NewN + 1;
+    X mod CurX =\= 0, NewCurX is CurX-1,divsC(X,NewCurX,NewN), N is NewN.

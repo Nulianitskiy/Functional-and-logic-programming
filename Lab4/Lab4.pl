@@ -174,3 +174,14 @@ writePosNeg:-write("Размер массива = "),read(N),nl,
     writePositive(List),nl,
     writeNegative(List),nl,!.
 
+% anotherShit
+nod(A,A,A) :- !.
+nod(A,B,D) :- A>B, !, C is A-B, nod(C,B,D).
+nod(A,B,D) :- C is B-A, nod(A,C,D).
+
+anotherShit(List,Count):-lenght(List,L),listElNumb(List,X1,0),NewL is L-1,
+    listElNumb(List,X2,NewL),aSS(List,X1,X2,Count).
+
+aSS([],_,_,0):-!.
+aSS([H|List],X1,X2,Count):-aSS(List,X1,X2,NewCo),nod(H,X1,N1),nod(H,X2,N2),
+    (N1 =:= 1, N2 =:= 1, Count is NewCo+1; Count is NewCo),!.

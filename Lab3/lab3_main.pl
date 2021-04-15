@@ -76,6 +76,11 @@ strangeIter(X,N):-
     X mod 2 =:= 0, NewX is X div 2,strangeIter(NewX,NewN),N is NewN+1,!;
     X mod 2 =\= 0, NewX is X*3 + 1,strangeIter(NewX,NewN),N is NewN+1,!.
 
+strCount(Max,Max,1000000):-!.
+strCount(Cur,Max,Num):-NewNum is Num+1,strangeIter(NewNum,Len),max(Len,Cur,NewMax),
+    strCount(NewMax,Max,NewNum).
+strangeCounter(Cur,Num):-strCount(Cur,Max,Num),write(Max).
+
 % Exc 14
 countNotPrimeNODsUp(X,N):-countNPNODs(X,X,N),!.
 countNPNODs(_,1,0):-!.
@@ -89,3 +94,40 @@ cNPNODsD(X,CurX,CurN,N):-CurX mod 2 =:= 0, NewCurX is CurX+1, nod(X,NewCurX,Num)
     (Num =:= 1, NewCurN is CurN; Num =\= 1, NewCurN is CurN+1),
        cNPNODsD(X,NewCurX,NewCurN,N);
     CurX mod 2 =\= 0, NewCurX is CurX+1,NewCurN is CurN,cNPNODsD(X,NewCurX,NewCurN,N).
+
+% BrainFuck
+min(X,Y,X):-X<Y,!.
+min(_,Y,Y):-!.
+
+brainFuck(X,Y):-maxNumNot3Down(X,MaxNum),bF(X,MaxNum,Y),!.
+bF(1,_,9999):-!.
+bF(X,Max,Y):-NewX is X - 1,prime(NewX),bF(NewX,Max,NewY),
+    nod(NewX,Max,Num),(Num=:=1,min(Y,NewY,Y);Num=\= 1, Y is Y);
+    not(prime(NewX)),bF(NewX,Max,NewY),min(Y,NewY,Y).
+
+
+
+% FuckTheWorld
+
+fuckTheWorld(X):-maxNum(X,Max),getNotPr(X,0,0,N1,Max),
+    minNum(X,Min),getNotPr(X,0,0,N2,Min),(N1 =:=0->writeln("N1 = 0"),fail;
+                                         N2=:=0->writeln("N1 = 0"),fail;
+    nod(N1,N2,Rez),(Rez=:=1->writeln("Числа простые"),writeln(N1),writeln(N2);
+                   write("Числа не простые"),writeln(N1),writeln(N2))).
+
+getNotPr(X,X,N,N,_):-!.
+getNotPr(X,CurX,CurN,N,El):-NewCurX is CurX+1, nod(El,NewCurX,Num),
+    (Num =:= 1, NewCurN is CurN; Num =\= 1, NewCurN is CurN+1),
+       getNotPr(X,NewCurX,NewCurN,N,El),!.
+
+maxNum(0,0):-!.
+maxNum(X,N):-X1 is X div 10, maxNum(X1,N1),!,
+    N2 is X mod 10, max(N1,N2,N),!.
+
+min1(X,Y,X):-X<Y,!.
+min1(_,Y,Y):-!.
+
+minNum(0,9999):-!.
+minNum(X,N):-X1 is X div 10, minNum(X1,N1),!,
+    N2 is X mod 10, min1(N1,N2,N),!.
+

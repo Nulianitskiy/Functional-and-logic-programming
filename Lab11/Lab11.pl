@@ -1,3 +1,5 @@
+:- initialization pr.
+
 :- dynamic ruler/2.
 :- dynamic from/2.
 :- dynamic ideology/2.
@@ -104,7 +106,9 @@ question5(X5):-write("Как к нему относятся люди?"),nl,
               write("2 - Плохо"),nl,
               read(X5).
 
-pr:- question1(X1),
+pr:- prSeeAll,
+
+     question1(X1),
      question2(X2),
      question3(X3),
      question4(X4),
@@ -115,7 +119,7 @@ pr:- question1(X1),
      ideology(X,X3),
      life(X,X4),
      opinion(X,X5),
-     write("И ваш покемон: "),writeln(X);newOne(X1,X2,X3,X4,X5)),fail.
+     write("И ваш покемон: "),writeln(X),!;newOne(X1,X2,X3,X4,X5)),fail.
 
 newOne(X1,X2,X3,X4,X5):-writeln("Я хз, это новенький?"),
     writeln("1 - Да"),writeln("0 - Нет"),read(Ans),
