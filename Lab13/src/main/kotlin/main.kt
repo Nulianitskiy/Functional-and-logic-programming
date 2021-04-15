@@ -1,7 +1,7 @@
 fun main(args: Array<String>) {
     choser()
 }
-fun numSum(x : Int){
+fun numSum(x : Int):Int{
     var sum = 0
     var y = x
     while (y>0){
@@ -9,6 +9,7 @@ fun numSum(x : Int){
         y /= 10
     }
     println("Sum is $sum")
+    return sum
 }
 fun numMin(x:Int){
     var min = x % 10
@@ -115,4 +116,14 @@ fun choser(){
             choser()}
         else -> println("Ок, значит, на этом мы и закончим")
     }
+}
+
+fun factorial(num: Int): Long {
+    var result = 1L
+    for (i in 2..num) result *= i
+    return result
+}
+fun fuctorialDigitSum(number: Int): Int{
+    var res = factorial(number).toInt()
+    return numSum(res)
 }
