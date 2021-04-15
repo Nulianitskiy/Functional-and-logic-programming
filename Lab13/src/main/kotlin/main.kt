@@ -1,4 +1,10 @@
 fun main(args: Array<String>) {
-    var name = "Nick"
-    println("Hi, $name! What`s up?")
+    var language = readLine();
+    when(language){
+        "Prolog", "Kotlin" -> println("Ты подлиза! Фу!")
+        "C#" -> println("Мое вам почтение!")
+        "C++" -> println("Ну, с кем не бывает...")
+        "Python" -> println("Кшш Кш Кшшшш!")
+        else -> println("Прости, братик, моему создателю было лень, и он не придумал, что ответить на это")
+    }
 }
