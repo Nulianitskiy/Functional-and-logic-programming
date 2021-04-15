@@ -1,5 +1,6 @@
 fun main(args: Array<String>) {
-    choser()
+    //choser()
+    println(factorialDigitSum(10))
 }
 fun numSum(x : Int):Int{
     var sum = 0
@@ -123,7 +124,7 @@ fun factorial(num: Int): Long {
     for (i in 2..num) result *= i
     return result
 }
-fun fuctorialDigitSum(number: Int): Int{
+fun factorialDigitSum(number: Int): Int{
     var res = factorial(number).toInt()
     return numSum(res)
 }
