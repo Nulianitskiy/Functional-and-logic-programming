@@ -1,3 +1,4 @@
 fun main(args: Array<String>) {
-    println("Hello World!")
+    var name = "Nick"
+    println("Hi, $name! What`s up?")
 }
