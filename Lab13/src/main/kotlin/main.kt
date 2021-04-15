@@ -1,5 +1,6 @@
 fun main(args: Array<String>) {
     meth1(12345)
+    meth2(123456)
 }
 fun numSum(x : Int){
     var sum = 0
@@ -54,4 +55,14 @@ fun meth1(x: Int){
         if(gcd(c,x)==1) count++
     }
     println("Method1 = $count")
+}
+
+fun meth2(x:Int){
+    var max = -1
+    var y = x
+    while (y > 0){
+        if (y % 10 > max && (y%10)%3 !=0) max = y % 10
+        y /= 10
+    }
+    println("modernMax is $max")
 }
