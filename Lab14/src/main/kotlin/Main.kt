@@ -10,7 +10,14 @@ fun main(args: Array<String>) {
     //println("Answer for max by up recursion= ${numMaxUp(readLine()!!.toInt())}")
     //println("Answer for max by tail recursion= ${numMaxTail(readLine()!!.toInt())}")
 
-    println("Answer for analyzer= ${anlDefFunc(readLine()!!.toInt(),::numSumUp,0)}")
+    //println("Answer for analyzer= ${anlDefFunc(readLine()!!.toInt(),::numSumUp,0)}")
+
+    //Сумма всех цифр, если каждая из них меньше 5
+    //println("Answer for 1 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numSumUp,::checkLow5)}")
+    //Произведение всех цифр, если каждая из них больше 5
+    //println("Answer for 2 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numMultUp,::checkUp5)}")
+    //Минимальная цифра в четном мире
+    //println("Answer for 3 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numMinUp,::checkAllEven)}")
 }
 //Exc 1
 fun numSumUp(x:Int): Int = if(x/10 == 0) x%10 else numSumUp(x/10)+x%10
@@ -49,3 +56,20 @@ fun numMaxTail(x:Int): Int = numMaxTail(x,x%10)
 
 //Exc 4
 fun anlDefFunc(x:Int,func:(x:Int)->Int,Res:Int?):Int = func(x)
+
+//Exc 5
+fun modernAnl(x:Int,func:(num:Int)->Int,check:(ch:Int)->Boolean):Int = if(check(x)) func(x) else 0
+
+//Exc 6
+fun checkLow5(x:Int):Boolean =
+    if(x>0)
+        if(x%10 >= 5) false else checkLow5(x/10)
+    else true
+fun checkUp5(x:Int):Boolean =
+    if(x>0)
+        if(x%10 < 5) false else checkUp5(x/10)
+    else true
+fun checkAllEven(x:Int):Boolean =
+    if(x>0)
+        if(x%2 != 0) false else checkAllEven(x/10)
+    else true
