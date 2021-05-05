@@ -1,0 +1,4 @@
+D:\swipl\bin\swipl.exe -f swipl -q -f [C:\Users\User\Desktop\Resources\2_Course\Work_in_progres\Aki_lite.pl] -t pr
+
+D:\swipl\bin\swipl.exe -f swipl
+consult('C:/Users/User/Desktop/Resources/2 Course/Work in progress/Aki_lite.pl').
