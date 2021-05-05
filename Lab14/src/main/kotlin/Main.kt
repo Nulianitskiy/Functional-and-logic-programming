@@ -13,11 +13,15 @@ fun main(args: Array<String>) {
     //println("Answer for analyzer= ${anlDefFunc(readLine()!!.toInt(),::numSumUp,0)}")
 
     //Сумма всех цифр, если каждая из них меньше 5
-    //println("Answer for 1 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numSumUp,::checkLow5)}")
+    //println("Answer for 1 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numSumUp,::checkAllLow5)}")
     //Произведение всех цифр, если каждая из них больше 5
-    //println("Answer for 2 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numMultUp,::checkUp5)}")
+    //println("Answer for 2 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numMultUp,::checkAllUp5)}")
     //Минимальная цифра в четном мире
     //println("Answer for 3 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numMinUp,::checkAllEven)}")
+
+    println("Answer for 1 modern Meth= ${recMeth1(readLine()!!.toInt())}")
+    println("Answer for 2 modern Meth= ${recMeth2(readLine()!!.toInt())}")
+    println("Answer for 3 modern Meth= ${recMeth3(readLine()!!.toInt())}")
 }
 //Exc 1
 fun numSumUp(x:Int): Int = if(x/10 == 0) x%10 else numSumUp(x/10)+x%10
@@ -61,15 +65,53 @@ fun anlDefFunc(x:Int,func:(x:Int)->Int,Res:Int?):Int = func(x)
 fun modernAnl(x:Int,func:(num:Int)->Int,check:(ch:Int)->Boolean):Int = if(check(x)) func(x) else 0
 
 //Exc 6
-fun checkLow5(x:Int):Boolean =
+fun checkAllLow5(x:Int):Boolean =
     if(x>0)
-        if(x%10 >= 5) false else checkLow5(x/10)
+        if(x%10 >= 5) false else checkAllLow5(x/10)
     else true
-fun checkUp5(x:Int):Boolean =
+fun checkAllUp5(x:Int):Boolean =
     if(x>0)
-        if(x%10 < 5) false else checkUp5(x/10)
+        if(x%10 < 5) false else checkAllUp5(x/10)
     else true
 fun checkAllEven(x:Int):Boolean =
     if(x>0)
         if(x%2 != 0) false else checkAllEven(x/10)
     else true
+
+//Exc 7
+fun checkEven(x:Int) = x%2 == 0
+
+fun gcd(a: Int, b: Int): Int {
+    if (b == 0) return a
+    return gcd(b, a % b)
+}
+fun recMeth1(orig:Int,cur:Int,count:Int):Int =
+    if(cur>0)
+        if(checkEven(cur%10) && gcd(cur%10,orig)!=1) recMeth1(orig,cur/10,count+1)
+        else recMeth1(orig,cur/10,count)
+    else count
+fun recMeth1(x:Int) = recMeth1(x,x,0)
+
+//
+fun checkDel3(x:Int) = x%3 == 0
+
+fun recMeth2(orig:Int):Int =
+    if(orig>0)
+        if(checkDel3(numMaxUp(orig))) recMeth2(orig/10) else numMaxUp(orig)
+    else -1
+
+//
+fun checkLow5(x:Int) = x < 5
+
+fun nd(x:Int,y:Int = 2): Int = if(gcd(x,y) == 1) y else nd(x,y+1)
+
+fun sumLow5(x:Int,sum:Int):Int =
+    if(x>0) if(checkLow5(x%10)) sumLow5(x/10,sum+(x%10)) else sumLow5(x/10,sum)
+    else sum
+
+fun maxNotPrimeNotND(x:Int,cur:Int): Int =
+    if(cur > 0)
+        if(gcd(numMaxUp(cur),x)!=1&&numMaxUp(cur)%nd(x,2)!=0) numMaxUp(cur) else maxNotPrimeNotND(x,cur/10)
+    else numMaxUp(cur)
+
+fun recMeth3(x:Int): Int = sumLow5(x,0)*maxNotPrimeNotND(x,x)
