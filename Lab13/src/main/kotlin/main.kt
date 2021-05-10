@@ -160,14 +160,14 @@ fun digitInNum(num:Int,i:Int): Int {
         number /=10
     return number%10
 }
-fun charlemagne(num:Int):Int {
-    var number = num
-    var i = 0
-    var n = 0
-    while (number >= n){
-        i++
-        n = countDigits(i,0)
-        number -= n
-    }
-    return digitInNum(number,n)
+
+fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
+fun myPow(x:Int,y:Int) =  myPow(x,1,y)
+
+fun exc40(): String? {
+    val sb = StringBuilder()
+    for (i in 1..999999) sb.append(i)
+    var prod = 1
+    for (i in 0..6) prod *= sb[myPow(10, i) - 1] - '0'
+    return Integer.toString(prod)
 }

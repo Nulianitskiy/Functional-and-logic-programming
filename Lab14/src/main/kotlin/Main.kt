@@ -1,3 +1,4 @@
+import kotlin.math.pow
 fun main(args: Array<String>) {
     //println("Answer for sum by up recursion= ${numSumUp(readLine()!!.toInt())}")
 
@@ -19,9 +20,11 @@ fun main(args: Array<String>) {
     //Минимальная цифра в четном мире
     //println("Answer for 3 modern analyzer= ${modernAnl(readLine()!!.toInt(),::numMinUp,::checkAllEven)}")
 
-    println("Answer for 1 modern Meth= ${recMeth1(readLine()!!.toInt())}")
-    println("Answer for 2 modern Meth= ${recMeth2(readLine()!!.toInt())}")
-    println("Answer for 3 modern Meth= ${recMeth3(readLine()!!.toInt())}")
+    //println("Answer for 1 modern Meth= ${recMeth1(readLine()!!.toInt())}")
+    //println("Answer for 2 modern Meth= ${recMeth2(readLine()!!.toInt())}")
+    //println("Answer for 3 modern Meth= ${recMeth3(readLine()!!.toInt())}")
+
+    println("Answer for 20 = ${run()}")
 }
 //Exc 1
 fun numSumUp(x:Int): Int = if(x/10 == 0) x%10 else numSumUp(x/10)+x%10
@@ -115,3 +118,12 @@ fun maxNotPrimeNotND(x:Int,cur:Int): Int =
     else numMaxUp(cur)
 
 fun recMeth3(x:Int): Int = sumLow5(x,0)*maxNotPrimeNotND(x,x)
+
+//Exc 9
+//40
+fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
+fun myPow(x:Int,y:Int) =  myPow(x,1,y)
+
+fun numCount(x:Int,count: Int):Int = if(x>0) numCount(x/10,count+1) else count
+
+fun getDigByNum(x: Int,num: Int) = (x/myPow(10,numCount(x,0)-num))%10
