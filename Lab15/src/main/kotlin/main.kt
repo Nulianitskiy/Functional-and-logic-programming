@@ -8,7 +8,8 @@ fun main(args: Array<String>) {
     //println("Func min ${arrayOp(arrayint,::shortNumArrMin,0)}")
     //println("Func max ${arrayOp(arrayint,::shortNumArrMax,0)}")
 
-    println("Exc 4.9 ${arrayPrinter(getBeforeLastMin(arrayint))}")
+    //println("Exc 4.9 ${arrayPrinter(getBeforeLastMin(arrayint))}")
+    println("Exc 4.10 = ${countOfExact(arrayint,arrayint2,0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -77,3 +78,17 @@ fun checkOrDie(arr:IntArray,x:Int): IntArray =
 
 
 fun getBeforeLastMin(arr:IntArray) = checkOrDie(arr.reversedArray(),shortNumArrMin(arr))
+
+/// Exc 4.10
+var arrayint2 = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
+fun checkOnExact(x:Int,arr: IntArray): Boolean =
+    if(arr.isNotEmpty())
+        if(x == arr[0]) true
+        else checkOnExact(x,remove(arr,0))
+    else false
+
+fun countOfExact(arr1:IntArray,arr2:IntArray,count:Int):Int =
+    if(arr1.isNotEmpty())
+        if(checkOnExact(arr1[0],arr2)) countOfExact(remove(arr1,0),arr2,count+1)
+        else countOfExact(remove(arr1,0),arr2,count)
+    else count
