@@ -1,10 +1,14 @@
+import java.io.File
+import java.util.*
+
 fun main(args: Array<String>) {
-    arrayPrinter(arrayint)
-    println("Func sum ${arrayOp(arrayint,::shortNumArrSum,0)}")
-    println("Func mult ${arrayOp(arrayint,::shortNumArrMult,0)}")
-    println("Func min ${arrayOp(arrayint,::shortNumArrMin,0)}")
-    println("Func max ${arrayOp(arrayint,::shortNumArrMax,0)}")
-    arrayPrinter(arrayint)
+    //arrayPrinter(arrayint)
+    //println("Func sum ${arrayOp(arrayint,::shortNumArrSum,0)}")
+    //println("Func mult ${arrayOp(arrayint,::shortNumArrMult,0)}")
+    //println("Func min ${arrayOp(arrayint,::shortNumArrMin,0)}")
+    //println("Func max ${arrayOp(arrayint,::shortNumArrMax,0)}")
+
+    println("Exc 4.9 ${arrayPrinter(getBeforeLastMin(arrayint))}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -63,3 +67,13 @@ fun arrayOp(arr:IntArray,func:(arr:IntArray)->Int,x:Int): Int = func(arr)
 fun arrayPrint() {
     arrayPrinter(arrayint)
 }
+/// Exc 3
+
+/// Exc 4.9
+fun checkOrDie(arr:IntArray,x:Int): IntArray =
+    if(arr[0] != x)
+        checkOrDie(remove(arr,0),x)
+    else remove(arr,0).reversedArray()
+
+
+fun getBeforeLastMin(arr:IntArray) = checkOrDie(arr.reversedArray(),shortNumArrMin(arr))
