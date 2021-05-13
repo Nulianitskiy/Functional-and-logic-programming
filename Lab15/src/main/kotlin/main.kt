@@ -13,7 +13,8 @@ fun main(args: Array<String>) {
     //println("Exc 4.22 = ${countOfMinInInterval(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0)}")
     //println("Exc 4.24 = ${arrayPrinter(find2Max(arrayint))}")
     //println("Exc 4.31 = ${countOfEvenInArr(arrayint,0)}")
-    println("Exc 4.34 = ${arrayPrinter(elInDistance(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0))}")
+    // println("Exc 4.34 = ${arrayPrinter(elInDistance(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0))}")
+    println("Exc 4.40 = ${findMinEven(arrayint)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -127,5 +128,12 @@ fun countOfEvenInArr(arr: IntArray,count:Int):Int =
 fun elInDistance(arr: IntArray,a: Int,b: Int,index: Int): IntArray =
     if(index >= arr.size) arr
     else
-        if(arr[index] >= a && arr[index] <= b) elInDistance(arr,a,b,index+1)
+        if(arr[index] in a..b) elInDistance(arr,a,b,index+1)
         else elInDistance(remove(arr,index),a,b,0)
+
+/// Exc 4.40
+fun findMinEven(arr: IntArray): Int =
+    if(arr.isEmpty()) -1
+    else
+        if(shortNumArrMin(arr)%2 == 0) shortNumArrMin(arr)
+        else findMinEven(remove(arr,arr.indexOf(shortNumArrMin(arr))))
