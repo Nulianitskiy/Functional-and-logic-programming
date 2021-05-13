@@ -15,8 +15,9 @@ fun main(args: Array<String>) {
     //println("Exc 4.31 = ${countOfEvenInArr(arrayint,0)}")
     // println("Exc 4.34 = ${arrayPrinter(elInDistance(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0))}")
     //println("Exc 4.40 = ${findMinEven(arrayint)}")
-    println("Exc 4.46 = ")
-    plusMinusStandUp(arrayint)
+    //println("Exc 4.46 = ")
+    //plusMinusStandUp(arrayint)
+    println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -145,3 +146,12 @@ fun plusMinusStandUp(arr:IntArray){
     arr.forEach { if(it >= 0) print(" $it") }
     arr.forEach { if (it < 0) print(" $it") }
 }
+
+/// Exc 4.58
+fun sum2is3(arrOr: IntArray,arrCur: IntArray,count: Int): Int =
+    if (arrCur.isNotEmpty()) {
+        var n = 0
+        arrCur.forEach { if (checkOnExact(arrCur[0] + it, arrOr)) n++ }
+        sum2is3(arrOr,remove(arrCur,0),count+n)
+    }
+    else count
