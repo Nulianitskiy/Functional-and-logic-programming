@@ -11,7 +11,8 @@ fun main(args: Array<String>) {
     //println("Exc 4.9 ${arrayPrinter(getBeforeLastMin(arrayint))}")
     //println("Exc 4.10 = ${countOfExact(arrayint,arrayint2,0)}")
     //println("Exc 4.22 = ${countOfMinInInterval(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0)}")
-    println("Exc 4.24 = ${arrayPrinter(find2Max(arrayint))}")
+    //println("Exc 4.24 = ${arrayPrinter(find2Max(arrayint))}")
+    println("Exc 4.31 = ${countOfEvenInArr(arrayint,0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -113,3 +114,10 @@ fun countOfMinInInterval(arr: IntArray,a:Int,b:Int,count:Int): Int = countOfNum(
 
 /// Exc 4.24
 fun find2Max(arr: IntArray): IntArray = intArrayOf(shortNumArrMax(arr),shortNumArrMax(remove(arr,arr.indexOf(shortNumArrMax(arr)))))
+
+/// Exc 4.31
+fun countOfEvenInArr(arr: IntArray,count:Int):Int =
+    if(arr.isNotEmpty())
+        if(arr[0] % 2 == 0) countOfEvenInArr(remove(arr,0),count+1)
+        else countOfEvenInArr(remove(arr,0),count)
+    else count
