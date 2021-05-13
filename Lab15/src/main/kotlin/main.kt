@@ -10,7 +10,8 @@ fun main(args: Array<String>) {
 
     //println("Exc 4.9 ${arrayPrinter(getBeforeLastMin(arrayint))}")
     //println("Exc 4.10 = ${countOfExact(arrayint,arrayint2,0)}")
-    println("Exc 4.22 = ${countOfMinInInterval(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0)}")
+    //println("Exc 4.22 = ${countOfMinInInterval(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0)}")
+    println("Exc 4.24 = ${arrayPrinter(find2Max(arrayint))}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -82,6 +83,7 @@ fun getBeforeLastMin(arr:IntArray) = checkOrDie(arr.reversedArray(),shortNumArrM
 
 /// Exc 4.10
 var arrayint2 = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
+
 fun checkOnExact(x:Int,arr: IntArray): Boolean =
     if(arr.isNotEmpty())
         if(x == arr[0]) true
@@ -108,3 +110,6 @@ fun countOfNum(arr: IntArray,num:Int,count: Int):Int =
     else count
 
 fun countOfMinInInterval(arr: IntArray,a:Int,b:Int,count:Int): Int = countOfNum(makeInterval(arr,a,b),shortNumArrMin(arr),count)
+
+/// Exc 4.24
+fun find2Max(arr: IntArray): IntArray = intArrayOf(shortNumArrMax(arr),shortNumArrMax(remove(arr,arr.indexOf(shortNumArrMax(arr)))))
