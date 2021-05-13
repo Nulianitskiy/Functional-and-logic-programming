@@ -9,7 +9,8 @@ fun main(args: Array<String>) {
     //println("Func max ${arrayOp(arrayint,::shortNumArrMax,0)}")
 
     //println("Exc 4.9 ${arrayPrinter(getBeforeLastMin(arrayint))}")
-    println("Exc 4.10 = ${countOfExact(arrayint,arrayint2,0)}")
+    //println("Exc 4.10 = ${countOfExact(arrayint,arrayint2,0)}")
+    println("Exc 4.22 = ${countOfMinInInterval(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -92,3 +93,18 @@ fun countOfExact(arr1:IntArray,arr2:IntArray,count:Int):Int =
         if(checkOnExact(arr1[0],arr2)) countOfExact(remove(arr1,0),arr2,count+1)
         else countOfExact(remove(arr1,0),arr2,count)
     else count
+
+/// Exc 4.22
+fun makeInterval(arr: IntArray,a: Int,b: Int):IntArray =
+    if(arr.size>b+1) makeInterval(remove(arr,b),a,b)
+    else
+        if(a>0) makeInterval(remove(arr,0),a-1,b)
+        else arr
+
+fun countOfNum(arr: IntArray,num:Int,count: Int):Int =
+    if(arr.isNotEmpty())
+        if(arr[0]==num) countOfNum(remove(arr,0),num,count+1)
+        else countOfNum(remove(arr,0),num,count+1)
+    else count
+
+fun countOfMinInInterval(arr: IntArray,a:Int,b:Int,count:Int): Int = countOfNum(makeInterval(arr,a,b),shortNumArrMin(arr),count)
