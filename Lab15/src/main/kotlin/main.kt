@@ -14,7 +14,9 @@ fun main(args: Array<String>) {
     //println("Exc 4.24 = ${arrayPrinter(find2Max(arrayint))}")
     //println("Exc 4.31 = ${countOfEvenInArr(arrayint,0)}")
     // println("Exc 4.34 = ${arrayPrinter(elInDistance(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0))}")
-    println("Exc 4.40 = ${findMinEven(arrayint)}")
+    //println("Exc 4.40 = ${findMinEven(arrayint)}")
+    println("Exc 4.46 = ")
+    plusMinusStandUp(arrayint)
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -137,3 +139,9 @@ fun findMinEven(arr: IntArray): Int =
     else
         if(shortNumArrMin(arr)%2 == 0) shortNumArrMin(arr)
         else findMinEven(remove(arr,arr.indexOf(shortNumArrMin(arr))))
+
+/// Exc 4.46
+fun plusMinusStandUp(arr:IntArray){
+    arr.forEach { if(it >= 0) print(" $it") }
+    arr.forEach { if (it < 0) print(" $it") }
+}
