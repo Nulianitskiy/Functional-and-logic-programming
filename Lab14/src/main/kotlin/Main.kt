@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
     //println("Answer for 2 modern Meth= ${recMeth2(readLine()!!.toInt())}")
     //println("Answer for 3 modern Meth= ${recMeth3(readLine()!!.toInt())}")
 
-    println("Answer for 20 = ${run()}")
+    println("Answer for 20 = ${factorialDigitSum(readLine()!!.toInt())}")
 }
 //Exc 1
 fun numSumUp(x:Int): Int = if(x/10 == 0) x%10 else numSumUp(x/10)+x%10
@@ -120,6 +120,13 @@ fun maxNotPrimeNotND(x:Int,cur:Int): Int =
 fun recMeth3(x:Int): Int = sumLow5(x,0)*maxNotPrimeNotND(x,x)
 
 //Exc 9
+//20
+fun factorial(num: Int,res:Int): Int =
+    if(num>=2) factorial(num-1,res*num)
+    else res
+
+fun factorialDigitSum(number: Int) = numSumTail(factorial(number,1),0)
+
 //40
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
