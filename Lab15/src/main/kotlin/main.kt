@@ -24,8 +24,8 @@ fun main(args: Array<String>) {
     //println("Exc 8.9 = ${getBeforeLastMin(list)}")
     //val list2 = createList()
     //println("Exc 8.10 = ${countOfExact(list,list2,0)}")
-    println("Exc 8.22 = ${countOfMinInInterval(list,2,5,0)}")
-    
+    //println("Exc 8.22 = ${countOfMinInInterval(list,2,5,0)}")
+    println("Exc 8.22 = ${find2Max(list)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -262,14 +262,14 @@ fun numListMax(list:MutableList<Int>,max:Int): Int =
         if(max < list[0]) {
             val l = list[0]
             list.removeAt(0)
-            numListMin(list, l)
+            numListMax(list, l)
         }
         else {
             list.removeAt(0)
-            numListMin(list,max)
+            numListMax(list,max)
         }
     else max
-fun numListMax(list:MutableList<Int>) = numListMin(list,list[0])
+fun numListMax(list:MutableList<Int>) = numListMax(list,list[0])
 
 fun listOp(list:MutableList<Int>,func:(list:MutableList<Int>)->Int,x:Int): Int = func(list)
 
@@ -372,4 +372,11 @@ fun countOfNum(list:MutableList<Int>,num:Int,count: Int):Int =
 fun countOfMinInInterval(list:MutableList<Int>,a:Int,b:Int,count:Int): Int {
     val listCopy = list.toMutableList()
     return countOfNum(makeInterval(list,a,b),numListMin(listCopy),count)
+}
+//8.24
+fun find2Max(list:MutableList<Int>): List<Int> {
+    val listCopy = list.toMutableList()
+    val m1 = numListMax(listCopy)
+    list.remove(m1)
+    return listOf(m1,numListMax(list))
 }
