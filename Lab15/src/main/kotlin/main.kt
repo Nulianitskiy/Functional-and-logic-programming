@@ -25,7 +25,9 @@ fun main(args: Array<String>) {
     //val list2 = createList()
     //println("Exc 8.10 = ${countOfExact(list,list2,0)}")
     //println("Exc 8.22 = ${countOfMinInInterval(list,2,5,0)}")
-    println("Exc 8.22 = ${find2Max(list)}")
+    //println("Exc 8.24 = ${find2Max(list)}")
+    //println("Exc 8.31 = ${countOfEvenInList(list,0)}")
+    println("Exc 8.34 = ${elInDistance(list,3,6,0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -380,3 +382,24 @@ fun find2Max(list:MutableList<Int>): List<Int> {
     list.remove(m1)
     return listOf(m1,numListMax(list))
 }
+//8.31
+fun countOfEvenInList(list:MutableList<Int>,count:Int):Int =
+    if(list.isNotEmpty())
+        if(list[0] % 2 == 0) {
+            list.removeAt(0)
+            countOfEvenInList(list,count+1)
+        }
+        else {
+            list.removeAt(0)
+            countOfEvenInList(list,count)
+        }
+    else count
+//8.34
+fun elInDistance(list:MutableList<Int>,a: Int,b: Int,index: Int): MutableList<Int> =
+    if(index >= list.size) list
+    else
+        if(list[index] in a..b) elInDistance(list,a,b,index+1)
+        else {
+            list.removeAt(index)
+            elInDistance(list,a,b,0)
+        }
