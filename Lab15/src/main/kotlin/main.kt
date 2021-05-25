@@ -27,7 +27,8 @@ fun main(args: Array<String>) {
     //println("Exc 8.22 = ${countOfMinInInterval(list,2,5,0)}")
     //println("Exc 8.24 = ${find2Max(list)}")
     //println("Exc 8.31 = ${countOfEvenInList(list,0)}")
-    println("Exc 8.34 = ${elInDistance(list,3,6,0)}")
+    //println("Exc 8.34 = ${elInDistance(list,3,6,0)}")
+    println("Exc 8.40 = ${findMinEven(list)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -403,3 +404,15 @@ fun elInDistance(list:MutableList<Int>,a: Int,b: Int,index: Int): MutableList<In
             list.removeAt(index)
             elInDistance(list,a,b,0)
         }
+//8.40
+fun findMinEven(list:MutableList<Int>): Int =
+    if(list.isEmpty()) -1
+    else {
+        val listCopy = list.toMutableList()
+        val min = numListMin(listCopy)
+        if (min % 2 == 0) numListMin(list)
+        else {
+            list.remove(min)
+            findMinEven(list)
+        }
+    }
