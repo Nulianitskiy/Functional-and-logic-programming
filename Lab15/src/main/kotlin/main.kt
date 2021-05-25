@@ -20,7 +20,10 @@ fun main(args: Array<String>) {
     //println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
 
     val list = createList()
-    println("Exc 5 = ${listOp(list,::numListSum,0)}")
+    //println("Exc 5 = ${listOp(list,::numListSum,0)}")
+    //println("Exc 8.9 = ${getBeforeLastMin(list)}")
+    val list2 = createList()
+    println("Exc 8.10 = ${countOfExact(list,list2,0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -292,3 +295,51 @@ fun createList(): MutableList<Int> {
     createHelpList(list,n)
     return list
 }
+
+/// Exc 6
+
+/// Exc 7
+
+/// Exc 8
+//8.9
+fun listCheckOrDie(list:MutableList<Int>,x:Int): MutableList<Int> {
+    val n = list.size - 1
+    if (list[n] != x) {
+        list.removeAt(n)
+        getBeforeLastMin(list)
+    }
+    else
+        list.removeAt(n)
+    return list
+}
+
+fun getBeforeLastMin(list:MutableList<Int>):MutableList<Int> {
+    val listCopy = list.toMutableList()
+    val min = numListMin(listCopy)
+    listCheckOrDie(list,min)
+    return list
+}
+//8.10
+fun checkOnExact(x:Int,list:MutableList<Int>): Boolean =
+    if(list.isNotEmpty())
+        if(x == list[0]) true
+        else{
+            list.removeAt(0)
+            checkOnExact(x,list)
+        }
+    else false
+
+fun countOfExact(list1:MutableList<Int>,list2:MutableList<Int>,count:Int):Int =
+    if(list1.isNotEmpty()) {
+        val list2Copy = list2.toMutableList()
+        if (checkOnExact(list1[0], list2Copy)) {
+            list1.removeAt(0)
+            countOfExact(list1, list2, count + 1)
+        }
+        else {
+            list1.removeAt(0)
+            countOfExact(list1, list2, count)
+        }
+    }
+    else count
+// 8.22
