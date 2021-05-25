@@ -22,8 +22,10 @@ fun main(args: Array<String>) {
     val list = createList()
     //println("Exc 5 = ${listOp(list,::numListSum,0)}")
     //println("Exc 8.9 = ${getBeforeLastMin(list)}")
-    val list2 = createList()
-    println("Exc 8.10 = ${countOfExact(list,list2,0)}")
+    //val list2 = createList()
+    //println("Exc 8.10 = ${countOfExact(list,list2,0)}")
+    println("Exc 8.22 = ${countOfMinInInterval(list,2,5,0)}")
+    
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -343,3 +345,31 @@ fun countOfExact(list1:MutableList<Int>,list2:MutableList<Int>,count:Int):Int =
     }
     else count
 // 8.22
+fun makeInterval(list:MutableList<Int>,a: Int,b: Int):MutableList<Int> =
+    if(list.size>b+1){
+        list.removeAt(0)
+        makeInterval(list,a,b)
+    }
+    else
+        if(a>0) {
+            list.removeAt(0)
+            makeInterval(list,a-1,b)
+        }
+        else list
+
+fun countOfNum(list:MutableList<Int>,num:Int,count: Int):Int =
+    if(list.isNotEmpty())
+        if(list[0]==num) {
+            list.removeAt(0)
+            countOfNum(list,num,count+1)
+        }
+        else {
+            list.removeAt(0)
+            countOfNum(list,num,count+1)
+        }
+    else count
+
+fun countOfMinInInterval(list:MutableList<Int>,a:Int,b:Int,count:Int): Int {
+    val listCopy = list.toMutableList()
+    return countOfNum(makeInterval(list,a,b),numListMin(listCopy),count)
+}
