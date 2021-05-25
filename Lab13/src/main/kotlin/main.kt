@@ -1,7 +1,5 @@
-import jdk.nashorn.internal.objects.NativeArray.forEach
-
 fun main(args: Array<String>) {
-    println("Hello world!")
+    choser()
 }
 fun numSum(x : Int):Int{
     var sum = 0
@@ -151,14 +149,6 @@ fun factorial(num: Int): Long {//10.20
 fun factorialDigitSum(number: Int): Int{
     var res = factorial(number).toInt()
     return numSum(res)
-}
-fun countDigits(num:Int,count:Int):Int = if(num >0) countDigits(num/10,count+1) else  count
-
-fun digitInNum(num:Int,i:Int): Int {
-    var number = num
-    for(n in 0..i-countDigits(num,0))
-        number /=10
-    return number%10
 }
 
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx

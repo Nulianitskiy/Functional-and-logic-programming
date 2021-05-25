@@ -13,11 +13,14 @@ fun main(args: Array<String>) {
     //println("Exc 4.22 = ${countOfMinInInterval(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0)}")
     //println("Exc 4.24 = ${arrayPrinter(find2Max(arrayint))}")
     //println("Exc 4.31 = ${countOfEvenInArr(arrayint,0)}")
-    // println("Exc 4.34 = ${arrayPrinter(elInDistance(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0))}")
+    //println("Exc 4.34 = ${arrayPrinter(elInDistance(arrayint,readLine()!!.toInt(),readLine()!!.toInt(),0))}")
     //println("Exc 4.40 = ${findMinEven(arrayint)}")
     //println("Exc 4.46 = ")
     //plusMinusStandUp(arrayint)
-    println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
+    //println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
+
+    val list = createList()
+    println("Exc 5 = ${listOp(list,::numListSum,0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -59,7 +62,7 @@ fun arrayPrinter(arr:IntArray){
     else println()
 }
 
-var arrayint = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
+//var arrayint = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
 
 fun remove(arr: IntArray, index: Int): IntArray {
     if (index < 0 || index >= arr.size) {
@@ -73,11 +76,71 @@ fun remove(arr: IntArray, index: Int): IntArray {
 
 fun arrayOp(arr:IntArray,func:(arr:IntArray)->Int,x:Int): Int = func(arr)
 
-fun arrayPrint() {
-    arrayPrinter(arrayint)
-}
+//fun arrayPrint() {
+//    arrayPrinter(arrayint)
+//}
 /// Exc 3
+/*
+val array = inputArray()
 
+
+fun inputArray(): Array<Int> {
+    return try {
+        selectArrayInputMethod()()//там тип взависимости от того что ввёл меняется функция
+    }
+    catch(e: Exception) {
+        when(e) {
+            is NullPointerException, is java.io.FileNotFoundException -> {
+                println("\nError: ${e.message}! I'm sorry, select console :(\n")
+                inputArray()
+            }
+            is NumberFormatException -> {
+                println("\nError: ${e.message}! Check the file.\n")
+                inputArray()
+            }
+            else -> throw e
+        }
+    }
+}
+
+fun selectArrayInputMethod(): () -> Array<Int> {
+    println("How do you want to input array?")
+    println("1. Console")
+    println("2. Standard file\n")
+    print(">: ")
+
+    return when(readLine()) {
+        "1" -> {
+            println()
+            ::inputArrayByConsole
+        }
+        "2" -> ::inputArrayByFileV2
+        else -> {
+            println("Invalid method. Try again!\n")
+            selectArrayInputMethod()
+        }
+    }
+}
+
+fun inputListByFileV2(): List<Int> =
+    try {
+        File("ExampleOfList.txt").readText().split(" ").map { it.toInt() }
+    }
+    catch(e: NullPointerException) { throw e }
+    catch(e: java.io.FileNotFoundException) { throw e }
+    catch(e: NumberFormatException) { throw e }
+
+fun inputArrayByConsole(): Array<Int> {
+    print("Input array (in one line, separated by space)\n>: ")
+
+    return try {
+        readLine()!!.split(" ").map { it.toInt() }.toTypedArray()
+    }
+    catch(e: NumberFormatException) {
+        println()
+        inputArrayByConsole()
+    }
+}*/
 /// Exc 4.9
 fun checkOrDie(arr:IntArray,x:Int): IntArray =
     if(arr[0] != x)
@@ -155,3 +218,77 @@ fun sum2is3(arrOr: IntArray,arrCur: IntArray,count: Int): Int =
         sum2is3(arrOr,remove(arrCur,0),count+n)
     }
     else count
+
+/// Exc 5
+fun numListSum(list:MutableList<Int>,sum:Int): Int =
+    if(list.isNotEmpty()){
+        val l = list[0]
+        list.removeAt(0)
+        numListSum(list,sum+l)
+    }
+    else sum
+fun numListSum(list:MutableList<Int>) = numListSum(list,0)
+
+fun numListMult(list:MutableList<Int>,mult:Int): Int =
+    if(list.isNotEmpty()) {
+        val l = list[0]
+        list.removeAt(0)
+        numListMult(list,mult * l)
+    }
+    else mult
+fun numListMult(list:MutableList<Int>) = numListMult(list,1)
+
+fun numListMin(list:MutableList<Int>,min:Int): Int =
+    if(list.isNotEmpty())
+        if(min > list[0]) {
+            val l = list[0]
+            list.removeAt(0)
+            numListMin(list, l)
+        }
+        else {
+            list.removeAt(0)
+            numListMin(list,min)
+        }
+    else min
+fun numListMin(list:MutableList<Int>) = numListMin(list,list[0])
+
+fun numListMax(list:MutableList<Int>,max:Int): Int =
+    if(list.isNotEmpty())
+        if(max < list[0]) {
+            val l = list[0]
+            list.removeAt(0)
+            numListMin(list, l)
+        }
+        else {
+            list.removeAt(0)
+            numListMin(list,max)
+        }
+    else max
+fun numListMax(list:MutableList<Int>) = numListMin(list,list[0])
+
+fun listOp(list:MutableList<Int>,func:(list:MutableList<Int>)->Int,x:Int): Int = func(list)
+
+fun listPrinter(list:MutableList<Int>){
+    if(list.isNotEmpty())
+    {
+        print(" ${list[0]}")
+        list.removeAt(0)
+        listPrinter(list)
+    }
+    else println()
+}
+fun createHelpList(list:MutableList<Int>,n:Int): MutableList<Int> =
+    if(n!=0) {
+        list.add(readLine()!!.toInt())
+        createHelpList(list,n-1)
+    }
+    else list
+
+fun createList(): MutableList<Int> {
+    println("Введите размер списка: ")
+    val n = readLine()!!.toInt()
+    println("Вводите элементы списка: ")
+    val list = mutableListOf<Int>()
+    createHelpList(list,n)
+    return list
+}

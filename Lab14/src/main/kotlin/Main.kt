@@ -24,7 +24,8 @@ fun main(args: Array<String>) {
     //println("Answer for 2 modern Meth= ${recMeth2(readLine()!!.toInt())}")
     //println("Answer for 3 modern Meth= ${recMeth3(readLine()!!.toInt())}")
 
-    println("Answer for 20 = ${factorialDigitSum(readLine()!!.toInt())}")
+    //println("Answer for 20 = ${factorialDigitSum(readLine()!!.toInt())}")
+    println(anlDefFunc(readLine()!!.toInt(),funByFun(),0))
 }
 //Exc 1
 fun numSumUp(x:Int): Int = if(x/10 == 0) x%10 else numSumUp(x/10)+x%10
@@ -134,3 +135,16 @@ fun myPow(x:Int,y:Int) =  myPow(x,1,y)
 fun numCount(x:Int,count: Int):Int = if(x>0) numCount(x/10,count+1) else count
 
 fun getDigByNum(x: Int,num: Int) = (x/myPow(10,numCount(x,0)-num))%10
+
+//Exc 8
+fun funByFun():(num:Int)->Int{
+    println("Выберите, функцию: 1 - Сумма цифр, 2 - Произведение цифр, 3 - Минимальная цифрв, 4 - Максимальная цифра ")
+
+    return when(readLine()!!.toInt()){
+        1 -> ::numSumUp
+        2 -> ::numMultUp
+        3 -> ::numMinUp
+        4 -> ::numMaxUp
+        else -> ::numSumUp
+    }
+}
