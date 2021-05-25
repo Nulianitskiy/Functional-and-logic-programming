@@ -28,7 +28,9 @@ fun main(args: Array<String>) {
     //println("Exc 8.24 = ${find2Max(list)}")
     //println("Exc 8.31 = ${countOfEvenInList(list,0)}")
     //println("Exc 8.34 = ${elInDistance(list,3,6,0)}")
-    println("Exc 8.40 = ${findMinEven(list)}")
+    //println("Exc 8.40 = ${findMinEven(list)}")
+    //println("Exc 8.46 = ${plusMinusStandUp(list)}")
+    println("Exc 8.58 = ${sum2is3(list,list,0)}")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -416,3 +418,17 @@ fun findMinEven(list:MutableList<Int>): Int =
             findMinEven(list)
         }
     }
+//8.46
+fun plusMinusStandUp(list:MutableList<Int>){
+    list.forEach { if(it >= 0) print(" $it") }
+    list.forEach { if (it < 0) print(" $it") }
+}
+//8.58
+fun sum2is3(listOr:MutableList<Int>,listCur:MutableList<Int>,count: Int): Int =
+    if (listCur.isNotEmpty()) {
+        var n = 0
+        val listCopy = listOr.toMutableList()
+        listCur.forEach { if (checkOnExact(listCur[0] + it, listCopy)) n++ }
+        listCur.removeAt(0)
+        sum2is3(listOr, listCur, count + n)
+    } else count
