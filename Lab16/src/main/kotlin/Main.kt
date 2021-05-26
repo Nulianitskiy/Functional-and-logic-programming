@@ -3,7 +3,7 @@ import java.util.Objects.equals
 
 fun main(args: Array<String>){
     val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
-    println(sortList(fileList))
+    println(sortListByWords(fileList))
 }
 //val line = readLine()
 /// Exc 1
@@ -85,3 +85,6 @@ fun getListByFileLineByLineUsingForEachLine(fileName: String): MutableList<Strin
 }
 
 fun sortList(list: MutableList<String>): List<String> = list.sortedBy { it.length }
+/// Exc 6
+fun sortListByWords(list: MutableList<String>) = list.sortedBy { it.count(::checkSpace) }
+fun checkSpace(ch:Char) = ch.toInt() == 32
