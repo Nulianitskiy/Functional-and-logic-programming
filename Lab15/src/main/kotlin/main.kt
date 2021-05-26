@@ -30,7 +30,8 @@ fun main(args: Array<String>) {
     //println("Exc 8.34 = ${elInDistance(list,3,6,0)}")
     //println("Exc 8.40 = ${findMinEven(list)}")
     //println("Exc 8.46 = ${plusMinusStandUp(list)}")
-    println("Exc 8.58 = ${sum2is3(list,list,0)}")
+    //println("Exc 8.58 = ${sum2is3(list,list,0)}")
+    tenMillion()
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -228,6 +229,18 @@ fun sum2is3(arrOr: IntArray,arrCur: IntArray,count: Int): Int =
         sum2is3(arrOr,remove(arrCur,0),count+n)
     }
     else count
+
+
+
+
+
+
+
+
+
+
+
+
 
 /// Exc 5
 fun numListSum(list:MutableList<Int>,sum:Int): Int =
@@ -432,3 +445,28 @@ fun sum2is3(listOr:MutableList<Int>,listCur:MutableList<Int>,count: Int): Int =
         listCur.removeAt(0)
         sum2is3(listOr, listCur, count + n)
     } else count
+
+/// Exc 9
+fun fillerList(list:MutableList<Int>,n:Int): MutableList<Int> =
+    if(n!=0) {
+        list.add(n)
+        print(" $n")
+        fillerList(list,n-1)
+    }
+    else list
+
+fun fillerSet(set:MutableSet<Int>,n:Int): MutableSet<Int> =
+    if(n!=0){
+        set.add(n)
+        print(" $n")
+        fillerSet(set,n-1)
+    }
+    else set
+
+fun tenMillion(){
+    val list = mutableListOf<Int>()
+    var list1 = fillerList(list,10000000)
+    println()
+    val set = mutableSetOf<Int>()
+    var set1 = fillerSet(set,10000000)
+}
