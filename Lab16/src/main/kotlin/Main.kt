@@ -1,7 +1,7 @@
 import java.util.Objects.equals
 
 fun main(args: Array<String>){
-    println(lineSize(line))
+    println(digitCount(line))
 }
 val line = readLine()
 /// Exc 1
@@ -15,3 +15,13 @@ fun findMaxInString(line:String?): String{
 fun palindromCheck(line:String?):Boolean = equals(line,line!!.reversed())
 /// Exc 2.11
 fun lineSize(line:String?):Int = line!!.split(" ").size
+/// Exc 2.15
+fun digitCount(line:String?):Int {
+    return try{
+        line!!.toInt()
+        line.length
+    }
+    catch (e: Exception){
+        0
+    }
+}
