@@ -1,7 +1,7 @@
 import java.util.Objects.equals
 
 fun main(args: Array<String>){
-    println(palindromCheck(line))
+    println(lineSize(line))
 }
 val line = readLine()
 /// Exc 1
@@ -13,3 +13,5 @@ fun findMaxInString(line:String?): String{
 }
 /// Exc 2.4
 fun palindromCheck(line:String?):Boolean = equals(line,line!!.reversed())
+/// Exc 2.11
+fun lineSize(line:String?):Int = line!!.split(" ").size
