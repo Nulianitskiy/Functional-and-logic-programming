@@ -1,9 +1,9 @@
 import java.util.Objects.equals
 
 fun main(args: Array<String>){
-    println(digitCount(line))
+    choserOfMyHeart()
 }
-val line = readLine()
+//val line = readLine()
 /// Exc 1
 fun findMaxInString(line:String?): String{
     val list = line!!.split(" ")
@@ -23,5 +23,17 @@ fun digitCount(line:String?):Int {
     }
     catch (e: Exception){
         0
+    }
+}
+/// Exc 2
+fun choserOfMyHeart(){
+    println("Выберите задачу:\n1 - Максимальное число из цифр\n2 - Проверка на палиндром\n3 - Количество слов\n4 - Количество цифр\n")
+    val n = readLine()
+    val line = readLine()
+    when(n){
+        "1" -> println(findMaxInString(line))
+        "2" -> println(palindromCheck(line))
+        "3" -> println(lineSize(line))
+        "4" -> println(digitCount(line))
     }
 }
