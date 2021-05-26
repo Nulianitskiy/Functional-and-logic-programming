@@ -1,8 +1,9 @@
+import java.io.File
 import java.util.Objects.equals
 
 fun main(args: Array<String>){
-    val line = readLine()
-    kirillIsExit(line)
+    val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
+    println(sortList(fileList))
 }
 //val line = readLine()
 /// Exc 1
@@ -76,3 +77,11 @@ fun kirillCheck(chList:CharArray,n:Int) {
             kirillCheck(chList, n + 1)
         } else kirillCheck(chList, n + 1)
 }
+/// Exc 5
+fun getListByFileLineByLineUsingForEachLine(fileName: String): MutableList<String>{
+    val list = mutableListOf<String>()
+    File(fileName).forEachLine { list.add(it) }
+    return list
+}
+
+fun sortList(list: MutableList<String>): List<String> = list.sortedBy { it.length }
