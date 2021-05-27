@@ -1,11 +1,8 @@
 fun main(args: Array<String>) {
-    val doc1 = Docs(0,0,"Name","Surname","MiddleName","Male","00-00-0000","City")
-    val doc2 = Docs(1,1,"NoName","NoSurname","NoSurname","Male","01-01-0001","noCity")
-    val doc3 = Docs(2,1,"X","","Z","Male","00-00-0001","Geometry")
-    printDoc(doc1)
-    printDoc(doc2)
-    printDoc(doc3)
-    saveDoc(doc3)
+    //val doc1 = Docs(0,0,"Name","Surname","MiddleName","Male","00-00-0000","City")
+    //val doc2 = Docs(1,1,"NoName","NoSurname","NoSurname","Male","01-01-0001","noCity")
+    //val doc3 = Docs(2,1,"X","","Z","Male","00-00-0001","Geometry")
+    create10Million()
 }
 /// Exc 1
 class Docs(val series: Int, val number: Int, var firstName: String, var lastName:String, var middleName: String, var gender:String, val dateBirth: String, val cityOfBirth: String)
@@ -35,4 +32,19 @@ fun Docs.validateBeforeSave(){
 }
 fun saveDoc(doc:Docs){
     doc.validateBeforeSave()
+}
+
+fun create10Million(){
+    val myDocs = Array(10000000) { randDoc() }
+    //myDocs.forEach{printDoc(it)}
+}
+
+fun randDoc(): Docs{
+    return Docs(0,0,"","","","","","")
+}
+fun getRandomString(length: Int) : String {
+    val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+    return (1..length)
+        .map { allowedChars.random() }
+        .joinToString("")
 }
