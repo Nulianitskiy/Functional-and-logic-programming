@@ -88,3 +88,4 @@ fun sortList(list: MutableList<String>): List<String> = list.sortedBy { it.lengt
 /// Exc 6
 fun sortListByWords(list: MutableList<String>) = list.sortedBy { it.count(::checkSpace) }
 fun checkSpace(ch:Char) = ch.toInt() == 32
+/// Exc 7
