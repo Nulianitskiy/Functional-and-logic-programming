@@ -2,8 +2,10 @@ import java.io.File
 import java.util.Objects.equals
 
 fun main(args: Array<String>){
-    val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
-    println(sortListByWords(fileList))
+    choserOfMyHeart()
+    //println(dateCorrect())
+    //val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
+    //println(sortListByNumbAfter(fileList))
 }
 //val line = readLine()
 /// Exc 1
@@ -19,13 +21,16 @@ fun palindromCheck(line:String?):Boolean = equals(line,line!!.reversed())
 fun lineSize(line:String?):Int = line!!.split(" ").size
 /// Exc 2.15
 fun digitCount(line:String?):Int {
-    return try{
-        line!!.toInt()
-        line.length
+    val list = mutableListOf<Char>()
+    var n = 0
+    val charList = line!!.toCharArray()
+    charList.forEach {
+        if (it !in list) {
+            n++
+            list.add(it)
+        }
     }
-    catch (e: Exception){
-        0
-    }
+    return n
 }
 /// Exc 2
 fun choserOfMyHeart(){
@@ -44,13 +49,13 @@ fun choserOfMyHeart(){
     }
 }
 /// Exc 3
-/*
+
 fun dateCorrect(): Boolean {
     val line = readLine()
     val date = line!!.split(" ")
     val months = listOf("января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря")
-    return date[0] in 0..31 && date[2] in 0..10000
-}*/
+    return date[0].toInt() in 0..31 && date[1] in months && date[2].toInt() in 0..10000
+}
 /// Exc 4.4
 fun low5(line:String?): Int {
     val charList = line!!.toCharArray()
@@ -72,7 +77,7 @@ fun kirillIsExit(line:String?){
 }
 fun kirillCheck(chList:CharArray,n:Int) {
     if (n <= 122)
-        if (n.toChar() !in chList) {
+        if (n.toChar() !in chList && n.toInt() !in 91..96) {
             print(" ${n.toChar()}")
             kirillCheck(chList, n + 1)
         } else kirillCheck(chList, n + 1)
@@ -89,3 +94,5 @@ fun sortList(list: MutableList<String>): List<String> = list.sortedBy { it.lengt
 fun sortListByWords(list: MutableList<String>) = list.sortedBy { it.count(::checkSpace) }
 fun checkSpace(ch:Char) = ch.toInt() == 32
 /// Exc 7
+fun sortListByNumbAfter(list:MutableList<String>) = list.sortedBy{it.count()}
+fun checkNumb(chN:Char,chS:Char,chL:Char) = chN.toInt() in 48..57 && chS.toInt() == 32 && (chL.toInt() in 65..90 || chL.toInt() in 97..122)

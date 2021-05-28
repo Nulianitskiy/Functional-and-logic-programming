@@ -2,6 +2,7 @@ import java.io.File
 import java.util.*
 
 fun main(args: Array<String>) {
+    //var arrayint = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
     //arrayPrinter(arrayint)
     //println("Func sum ${arrayOp(arrayint,::shortNumArrSum,0)}")
     //println("Func mult ${arrayOp(arrayint,::shortNumArrMult,0)}")
@@ -17,9 +18,9 @@ fun main(args: Array<String>) {
     //println("Exc 4.40 = ${findMinEven(arrayint)}")
     //println("Exc 4.46 = ")
     //plusMinusStandUp(arrayint)
-    //println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
+    println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
 
-    val list = createList()
+    //val list = createList()
     //println("Exc 5 = ${listOp(list,::numListSum,0)}")
     //println("Exc 8.9 = ${getBeforeLastMin(list)}")
     //val list2 = createList()
@@ -31,7 +32,7 @@ fun main(args: Array<String>) {
     //println("Exc 8.40 = ${findMinEven(list)}")
     //println("Exc 8.46 = ${plusMinusStandUp(list)}")
     //println("Exc 8.58 = ${sum2is3(list,list,0)}")
-    tenMillion()
+    //tenMillion()
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -73,7 +74,7 @@ fun arrayPrinter(arr:IntArray){
     else println()
 }
 
-//var arrayint = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
+var arrayint = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
 
 fun remove(arr: IntArray, index: Int): IntArray {
     if (index < 0 || index >= arr.size) {
@@ -162,7 +163,7 @@ fun checkOrDie(arr:IntArray,x:Int): IntArray =
 fun getBeforeLastMin(arr:IntArray) = checkOrDie(arr.reversedArray(),shortNumArrMin(arr))
 
 /// Exc 4.10
-var arrayint2 = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
+//var arrayint2 = IntArray(readLine()!!.toInt()) { readLine()!!.toInt() }
 
 fun checkOnExact(x:Int,arr: IntArray): Boolean =
     if(arr.isNotEmpty())
