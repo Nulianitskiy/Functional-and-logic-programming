@@ -2,10 +2,10 @@ import java.io.File
 import java.util.Objects.equals
 
 fun main(args: Array<String>){
-    choserOfMyHeart()
+    //choserOfMyHeart()
     //println(dateCorrect())
-    //val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
-    //println(sortListByNumbAfter(fileList))
+    val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
+    println(sortListByNumbAfter(fileList))
 }
 //val line = readLine()
 /// Exc 1
@@ -94,5 +94,17 @@ fun sortList(list: MutableList<String>): List<String> = list.sortedBy { it.lengt
 fun sortListByWords(list: MutableList<String>) = list.sortedBy { it.count(::checkSpace) }
 fun checkSpace(ch:Char) = ch.toInt() == 32
 /// Exc 7
-fun sortListByNumbAfter(list:MutableList<String>) = list.sortedBy{it.count()}
-fun checkNumb(chN:Char,chS:Char,chL:Char) = chN.toInt() in 48..57 && chS.toInt() == 32 && (chL.toInt() in 65..90 || chL.toInt() in 97..122)
+fun sortListByNumbAfter(list:MutableList<String>) = list.sort()
+fun sorterForCheckNumb(line:String?): Int {
+    val charList = line!!.toCharArray()
+    var n = 0
+    var cur = 2
+    if (cur < charList.size)
+        if (charListRunner(charList, cur)) {
+            n += 1
+            cur += 1
+        } else cur += 1
+    return n
+}
+fun charListRunner(charList:CharArray,cur:Int): Boolean =
+    charList[cur-2].toInt() in 48..57 && charList[cur-1].toInt() == 32 && (charList[cur].toInt() in 65..90 || charList[cur].toInt() in 97..122)

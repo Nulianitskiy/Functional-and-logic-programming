@@ -33,6 +33,17 @@ fun main(args: Array<String>) {
     //println("Exc 8.46 = ${plusMinusStandUp(list)}")
     //println("Exc 8.58 = ${sum2is3(list,list,0)}")
     //tenMillion()
+
+    //3
+    //val array = inputArray()
+    //print("\nВаш массив: ")
+    //outputArray<Int>(array)
+
+    //7
+    //val list = inputList()
+    //print("\nВаш спискок: ")
+    //outputList<Int>(list)
+    
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -88,71 +99,6 @@ fun remove(arr: IntArray, index: Int): IntArray {
 
 fun arrayOp(arr:IntArray,func:(arr:IntArray)->Int,x:Int): Int = func(arr)
 
-//fun arrayPrint() {
-//    arrayPrinter(arrayint)
-//}
-/// Exc 3
-/*
-val array = inputArray()
-
-
-fun inputArray(): Array<Int> {
-    return try {
-        selectArrayInputMethod()()//там тип взависимости от того что ввёл меняется функция
-    }
-    catch(e: Exception) {
-        when(e) {
-            is NullPointerException, is java.io.FileNotFoundException -> {
-                println("\nError: ${e.message}! I'm sorry, select console :(\n")
-                inputArray()
-            }
-            is NumberFormatException -> {
-                println("\nError: ${e.message}! Check the file.\n")
-                inputArray()
-            }
-            else -> throw e
-        }
-    }
-}
-
-fun selectArrayInputMethod(): () -> Array<Int> {
-    println("How do you want to input array?")
-    println("1. Console")
-    println("2. Standard file\n")
-    print(">: ")
-
-    return when(readLine()) {
-        "1" -> {
-            println()
-            ::inputArrayByConsole
-        }
-        "2" -> ::inputArrayByFileV2
-        else -> {
-            println("Invalid method. Try again!\n")
-            selectArrayInputMethod()
-        }
-    }
-}
-
-fun inputListByFileV2(): List<Int> =
-    try {
-        File("ExampleOfList.txt").readText().split(" ").map { it.toInt() }
-    }
-    catch(e: NullPointerException) { throw e }
-    catch(e: java.io.FileNotFoundException) { throw e }
-    catch(e: NumberFormatException) { throw e }
-
-fun inputArrayByConsole(): Array<Int> {
-    print("Input array (in one line, separated by space)\n>: ")
-
-    return try {
-        readLine()!!.split(" ").map { it.toInt() }.toTypedArray()
-    }
-    catch(e: NumberFormatException) {
-        println()
-        inputArrayByConsole()
-    }
-}*/
 /// Exc 4.9
 fun checkOrDie(arr:IntArray,x:Int): IntArray =
     if(arr[0] != x)
@@ -447,27 +393,153 @@ fun sum2is3(listOr:MutableList<Int>,listCur:MutableList<Int>,count: Int): Int =
         sum2is3(listOr, listCur, count + n)
     } else count
 
-/// Exc 9
-fun fillerList(list:MutableList<Int>,n:Int): MutableList<Int> =
-    if(n!=0) {
-        list.add(n)
-        print(" $n")
-        fillerList(list,n-1)
-    }
-    else list
 
-fun fillerSet(set:MutableSet<Int>,n:Int): MutableSet<Int> =
-    if(n!=0){
-        set.add(n)
-        print(" $n")
-        fillerSet(set,n-1)
-    }
-    else set
 
-fun tenMillion(){
-    val list = mutableListOf<Int>()
-    var list1 = fillerList(list,10000000)
-    println()
-    val set = mutableSetOf<Int>()
-    var set1 = fillerSet(set,10000000)
+
+
+
+
+
+
+
+
+// вывод массива
+fun<T> outputArray(array: Array<T>) {
+    print(array.joinToString(" "))
+}
+
+// вывод списка
+fun<T> outputList(list: List<T>) {
+    print(list.joinToString(" "))
+}
+fun inputListByConsole(): List<Int> {
+    print("Вводите список (в одну строку, через пробел)\n>: ")
+
+    return try {
+        readLine()!!.split(" ").map { it.toInt() }
+    }
+    catch(e: NumberFormatException) {
+        println()
+        inputListByConsole()
+    }
+}
+
+fun inputArrayByConsole(): Array<Int> {
+    print("Вводите список (в одну строку, через пробел)\n>: ")
+
+    return try {
+        readLine()!!.split(" ").map { it.toInt() }.toTypedArray()
+    }
+    catch(e: NumberFormatException) {
+        println()
+        inputArrayByConsole()
+    }
+}
+
+fun inputArrayByFile(path: String = "Для массива.txt"): Array<Int> =
+    try {
+        File(path).readText().split(" ").map { it.toInt() }.toTypedArray()
+    }
+    catch(e: NullPointerException) { throw e }
+    catch(e: java.io.FileNotFoundException) { throw e }
+    catch(e: NumberFormatException) { throw e }
+
+fun inputArrayByFileV2(): Array<Int> =
+    try {
+        File("Для массива.txt").readText().split(" ").map { it.toInt() }.toTypedArray()
+    }
+    catch(e: NullPointerException) { throw e }
+    catch(e: java.io.FileNotFoundException) { throw e }
+    catch(e: NumberFormatException) { throw e }
+
+fun inputListByFile(path: String = "Для списка.txt"): List<Int> =
+    try {
+        File(path).readText().split(" ").map { it.toInt() }
+    }
+    catch(e: NullPointerException) { throw e }
+    catch(e: java.io.FileNotFoundException) { throw e }
+    catch(e: NumberFormatException) { throw e }
+
+fun inputListByFileV2(): List<Int> =
+    try {
+        File("Для списка.txt").readText().split(" ").map { it.toInt() }
+    }
+    catch(e: NullPointerException) { throw e }
+    catch(e: java.io.FileNotFoundException) { throw e }
+    catch(e: NumberFormatException) { throw e }
+
+fun selectArrayInputMethod(): () -> Array<Int> {
+    println("Как вы хотите ввести массив?")
+    println("1. Через консоль")
+    println("2. Через файл\n")
+    print(">: ")
+
+    return when(readLine()) {
+        "1" -> {
+            println()
+            ::inputArrayByConsole
+        }
+        "2" -> ::inputArrayByFileV2
+        else -> {
+            println("Ты шо написал?!\n")
+            selectArrayInputMethod()
+        }
+    }
+}
+
+fun inputArray(): Array<Int> {
+    return try {
+        selectArrayInputMethod()()
+    }
+    catch(e: Exception) {
+        when(e) {
+            is NullPointerException, is java.io.FileNotFoundException -> {
+                println("\nОшибочка: ${e.message}!\n")
+                inputArray()
+            }
+            is NumberFormatException -> {
+                println("\nОшибочка: ${e.message}\n")
+                inputArray()
+            }
+            else -> throw e
+        }
+    }
+}
+
+fun selectListInputMethod(): () -> List<Int> {
+    println("Как вы хотите ввести список?")
+    println("1. Через консоль")
+    println("2. Через файл\n")
+    print(">: ")
+
+    return when(readLine()) {
+        "1" -> {
+            println()
+            ::inputListByConsole
+        }
+        "2" -> ::inputListByFileV2
+        else -> {
+            println("Ты шо написал?!\n")
+            selectListInputMethod()
+        }
+    }
+}
+
+fun inputList(): List<Int> {
+    return try {
+        selectListInputMethod()()
+    }
+    catch(e: Exception) {
+        when(e) {
+            is NullPointerException, is java.io.FileNotFoundException -> {
+                println("\nОшибочка: ${e.message}\n")
+                inputList()
+            }
+            is NumberFormatException -> {
+                println("\nОшибочка: ${e.message}\n")
+                inputList()
+            }
+            else -> throw e
+        }
+    }
 }
