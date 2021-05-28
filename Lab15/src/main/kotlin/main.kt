@@ -43,7 +43,24 @@ fun main(args: Array<String>) {
     //val list = inputList()
     //print("\nВаш спискок: ")
     //outputList<Int>(list)
-    
+
+    //9
+    //val collections = task9(10000000)
+    //val list = collections.first
+    //val set = collections.second
+    //print("Список/Множество: ")
+    //outputList(collections.first)
+
+    //10
+    //val listTime = measureTimeMillis {
+    //    list.minOrNull()
+    //}
+    //println("Время для списка: $listTime")
+
+    //val setTime = measureTimeMillis {
+    //set.minOrNull()
+    //}
+    //println("Время для множества: $setTime")
 }
 fun myPow(x:Int,cx:Int,y:Int):Int = if(y!=0) myPow(x,cx*x,y-1) else cx
 fun myPow(x:Int,y:Int) =  myPow(x,1,y)
@@ -542,4 +559,10 @@ fun inputList(): List<Int> {
             else -> throw e
         }
     }
+}
+
+/// Exc 9
+fun task9(size: Int): Pair<List<Double>, Set<Double>> {
+    val list = List(size) { Random.nextDouble() }
+    return Pair(list, list.toSet())
 }
