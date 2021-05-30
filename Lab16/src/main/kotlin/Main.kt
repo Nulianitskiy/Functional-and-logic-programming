@@ -3,9 +3,9 @@ import java.util.Objects.equals
 
 fun main(args: Array<String>){
     //choserOfMyHeart()
-    //println(dateCorrect())
-    val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
-    println(sortListByNumbAfter(fileList))
+    println(dateCorrect())
+    //val fileList = getListByFileLineByLineUsingForEachLine("C:\\Users\\User\\Desktop\\Resources\\2 Course\\Funkcionalnoe_i_logicheskoe_prevozmoganie\\Lab16\\In.txt")
+    //println(sortListByNumbAfter(fileList))
 }
 //val line = readLine()
 /// Exc 1

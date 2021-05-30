@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
     //println("Exc 4.40 = ${findMinEven(arrayint)}")
     //println("Exc 4.46 = ")
     //plusMinusStandUp(arrayint)
-    println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
+    //println("Exc 4.58 = ${sum2is3(arrayint,arrayint,0)}")
 
     //val list = createList()
     //println("Exc 5 = ${listOp(list,::numListSum,0)}")
@@ -40,9 +40,9 @@ fun main(args: Array<String>) {
     //outputArray<Int>(array)
 
     //7
-    //val list = inputList()
-    //print("\nВаш спискок: ")
-    //outputList<Int>(list)
+    val list = inputList()
+    print("\nВаш спискок: ")
+    outputList<Int>(list)
 
     //9
     //val collections = task9(10000000)
